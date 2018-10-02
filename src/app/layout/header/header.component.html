@@ -1,6 +1,69 @@
-<nav class="navbar navbar-light bg-light">
-    <form class="form-inline">
-      <button class="btn btn-outline-success" type="button">Main button</button>
-      <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
-    </form>
-  </nav>
+<nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  
+    <!-- logo -->   
+    <a class="navbar-brand logo-c" href="#">
+      <img src="/src/assets/images/logo.png" width="150" height="30" alt="">
+    </a>
+
+    <!-- toggler --> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation"
+        (click)="toggleCollapsed()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- menu -->
+    <div id="navbarSupportedContent" [ngClass]="{'collapse': !collapsed, 'navbar-collapse': true}">
+        <ul class="navbar-nav ml-auto">
+
+          <!-- search --> 
+          <li class="nav-item justify-content-end">
+              <a class="nav-link icon" href="#">
+                  <img *ngIf="!collapsed" src="/src/assets/icons/search.png" width="30" height="30" alt="search" title="Search">
+                  <span *ngIf="collapsed" class="text-link-c">Search</span>
+              </a>
+          </li>
+
+          <!-- Breakfast, Lunch, Dinner, Desserts -->
+          <li class="nav-item">
+            <a class="nav-link text-link-c" href="#">Breakfast</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-link-c" href="#">Lunch</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-link-c" href="#">Dinner</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-link-c" href="#">Desserts</a>
+          </li>
+
+          <!-- add new recipe --> 
+          <li class="nav-item justify-content-end">
+              <a class="nav-link icon-c" href="#">
+                  <img *ngIf="!collapsed" src="/src/assets/icons/pencil.png" width="30" height="30" alt="favorite" title="Add Recipe">
+                  <span *ngIf="collapsed" class="text-link-c">Add Recipe</span>
+              </a>
+          </li>
+
+          <!-- user's favorite recipes--> 
+          <li class="nav-item justify-content-end">
+              <a class="nav-link icon-c" href="#">
+                  <img *ngIf="!collapsed" src="/src/assets/icons/favorite.png" width="30" height="30" alt="favorite" title="My Favorite">
+                  <span *ngIf="collapsed" class="text-link-c">My Favorite</span>
+              </a>
+          </li>
+
+          <!-- user's recipes --> 
+          <li class="nav-item justify-content-end">
+            <a class="nav-link icon-c" href="#">
+              <img  *ngIf="!collapsed" src="/src/assets/icons/user.png" width="30" height="30" alt="user" title="My Recipes">
+              <span *ngIf="collapsed" class="text-link-c">My Recipes</span>
+            </a>
+          </li>
+
+        </ul>
+    </div>
+
+</nav>

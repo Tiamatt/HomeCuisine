@@ -1,0 +1,28 @@
+// @font-face {
+//     font-family: 'Jokerman';
+//     src: url('/src/assets/fonts/Jokerman-Regular.ttf')  format('truetype'); /* Safari, Android, iOS */
+//     font-weight: bold;
+// }
+.navbar{
+    border-bottom: 3px solid #E49B24;
+}
+.text-link-c{
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(228,155,36,1) !important;
+    font-weight: 600;
+}
+.text-link-c:hover{
+    color: rgba(206,214,212,1) !important;
+}
+
+.logo-c:hover, .icon-c:hover {
+    opacity: 0.7;
+}
+
+/* Main colors:
+    - #343A40 dark grey
+    - #E49B24 orange
+    - #a5ad7a light green for body background
+    - #373f1b dark green
+*/
