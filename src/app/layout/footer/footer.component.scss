@@ -1,10 +1,10 @@
 .footer-c{
     border-top: 3px solid #E49B24;
-}
-.footer-c p{
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 1.1rem;
-    color: rgba(228,155,36,1) !important;
-    font-weight: 600;
-    padding-top: 10px;
+    p, a {
+        font-family: 'PT Sans Narrow', sans-serif;
+        font-size: 1.1rem;
+        color: rgba(228,155,36,1) !important;
+        font-weight: 600;
+        padding-top: 10px; 
+    }
 }
