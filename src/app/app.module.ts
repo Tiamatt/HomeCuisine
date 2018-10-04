@@ -1,13 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppRoutesModule } from './routes/routes.module';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { UserComponent } from './routes/user/user.component';
 import { AdminComponent } from './routes/admin/admin.component';
-import { GeneralComponent } from './routes/general/general.component';
 import { ContentComponent } from './layout/content/content.component';
+import { MainComponent } from './routes/main/main.component';
+import { RecipesComponent } from './routes/recipes/recipes.component';
+import { RecipeEditComponent } from './routes/recipes/recipe-edit/recipe-edit.component';
+import { RecipeViewComponent } from './routes/recipes/recipe-view/recipe-view.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +20,15 @@ import { ContentComponent } from './layout/content/content.component';
     HeaderComponent,
     UserComponent,
     AdminComponent,
-    GeneralComponent,
-    ContentComponent
+    ContentComponent,
+    MainComponent,
+    RecipesComponent,
+    RecipeEditComponent,
+    RecipeViewComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

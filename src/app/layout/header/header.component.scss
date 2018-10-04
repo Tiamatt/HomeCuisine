@@ -3,6 +3,8 @@
 //     src: url('/src/assets/fonts/Jokerman-Regular.ttf')  format('truetype'); /* Safari, Android, iOS */
 //     font-weight: bold;
 // }
+$header-height: 24px;
+
 .navbar{
     border-bottom: 3px solid #E49B24;
 }
@@ -14,6 +16,17 @@
 }
 .text-link-c:hover{
     color: rgba(206,214,212,1) !important;
+}
+.logo-c{
+    padding:0;
+}
+.logo-img-c {
+    height:  $header-height;
+    width: 150px;
+}
+.icon-img-c {
+    height:  $header-height;
+    width: $header-height;
 }
 
 .logo-c:hover, .icon-c:hover {

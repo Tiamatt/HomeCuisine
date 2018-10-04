@@ -2,7 +2,7 @@
   
     <!-- logo -->   
     <a class="navbar-brand logo-c" href="#">
-      <img src="/src/assets/images/logo.png" width="150" height="30" alt="">
+      <img src="/src/assets/images/logo.png" class="logo-img-c" alt="">
     </a>
 
     <!-- toggler --> 
@@ -20,17 +20,17 @@
           <!-- search --> 
           <li class="nav-item justify-content-end">
               <a class="nav-link icon" href="#">
-                  <img *ngIf="!collapsed" src="/src/assets/icons/search.png" width="30" height="30" alt="search" title="Search">
+                  <img *ngIf="!collapsed" src="/src/assets/icons/search.png" class="icon-img-c" alt="search" title="Search">
                   <span *ngIf="collapsed" class="text-link-c">Search</span>
               </a>
           </li>
 
-          <!-- Breakfast, Lunch, Dinner, Desserts -->
+          <!-- Some titles -->
           <li class="nav-item">
-            <a class="nav-link text-link-c" href="#">Breakfast</a>
+            <a class="nav-link text-link-c" href="#">Quick&Easy</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link text-link-c" href="#">Lunch</a>
+              <a class="nav-link text-link-c" href="#">Appetizers</a>
           </li>
           <li class="nav-item">
               <a class="nav-link text-link-c" href="#">Dinner</a>
@@ -42,7 +42,7 @@
           <!-- add new recipe --> 
           <li class="nav-item justify-content-end">
               <a class="nav-link icon-c" href="#">
-                  <img *ngIf="!collapsed" src="/src/assets/icons/pencil.png" width="30" height="30" alt="favorite" title="Add Recipe">
+                  <img *ngIf="!collapsed" src="/src/assets/icons/pencil.png" class="icon-img-c" alt="favorite" title="Add Recipe">
                   <span *ngIf="collapsed" class="text-link-c">Add Recipe</span>
               </a>
           </li>
@@ -50,7 +50,7 @@
           <!-- user's favorite recipes--> 
           <li class="nav-item justify-content-end">
               <a class="nav-link icon-c" href="#">
-                  <img *ngIf="!collapsed" src="/src/assets/icons/favorite.png" width="30" height="30" alt="favorite" title="My Favorite">
+                  <img *ngIf="!collapsed" src="/src/assets/icons/favorite.png" class="icon-img-c" alt="favorite" title="My Favorite">
                   <span *ngIf="collapsed" class="text-link-c">My Favorite</span>
               </a>
           </li>
@@ -58,7 +58,7 @@
           <!-- user's recipes --> 
           <li class="nav-item justify-content-end">
             <a class="nav-link icon-c" href="#">
-              <img  *ngIf="!collapsed" src="/src/assets/icons/user.png" width="30" height="30" alt="user" title="My Recipes">
+              <img  *ngIf="!collapsed" src="/src/assets/icons/user.png" class="icon-img-c" alt="user" title="My Recipes">
               <span *ngIf="collapsed" class="text-link-c">My Recipes</span>
             </a>
           </li>
