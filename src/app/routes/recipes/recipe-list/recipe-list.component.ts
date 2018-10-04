@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-list',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent implements OnInit {
+  selectedGroup: string;
+  constructor(private activatedRoute: ActivatedRoute) {
+   }
 
-  constructor() { }
-
+  // private setSelectedGroup() {
+  //   let queryParams = this.activatedRoute.snapshot.queryParams;
+  //   this.selectedGroup = (queryParams['group']) ? queryParams['group'] : null;
+  //   console.log({'kaliLog': this.selectedGroup});
+  // }
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.selectedGroup = (params['group']) ? params['group'] : null;
+    });
   }
 
 }
