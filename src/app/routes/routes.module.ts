@@ -11,7 +11,7 @@ const routes: Routes = [
     { path: '', component: MainComponent },
     { path: 'recipes', component: RecipeListComponent },
     { path: 'recipes/new', component: RecipeEditComponent },
-    // { path: 'recipes/:id/edit', component: RecipeEditComponent }, // instead edit partially
+    { path: 'recipes/:id/edit', component: RecipeEditComponent }, // instead edit partially
     { path: 'recipes/:id/view', component: RecipeViewComponent },
     { path: 'not-found', component: MainComponent },
     { path: '**', component: MainComponent }

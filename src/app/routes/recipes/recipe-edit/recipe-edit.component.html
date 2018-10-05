@@ -1,13 +1,23 @@
-<!-- <form class="form-c">
+<form [formGroup]="recipeFormGroup" (ngSubmit)="onSubmit()" class="form-c" *ngIf="loaded">
   <div class="form-group">
       <h2>New Recipe</h2>
       <hr>
   </div>
+  
   <div class="form-group">
-    <label for="exampleFormControlInput1">Recipe name</label>
-    <input class="form-control" placeholder="your recipe name">
+    <label for="name">Recipe name</label>
+    <input type="text" id="name" formControlName="name" class="form-control" placeholder="your recipe name">
   </div>
+
+ 
   <div class="form-group">
+    <label>Recipe image</label>
+    <img [src]="recipeImage" height="200" width="500"> <br/>
+    <input type='file' (change)="onSelectFile($event)">
+  </div>
+
+
+   <!-- <div class="form-group">
     <label for="exampleFormControlSelect1">Example select</label>
     <select class="form-control" id="exampleFormControlSelect1">
       <option>1</option>
@@ -30,5 +40,6 @@
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Example textarea</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-</form> -->
+  </div> -->
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>

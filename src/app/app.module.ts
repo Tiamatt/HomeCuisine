@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutesModule } from './routes/routes.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './layout/footer/footer.component';
@@ -29,6 +30,7 @@ import { RecipeViewComponent } from './routes/recipes/recipe-view/recipe-view.co
   imports: [
     BrowserModule,
     AppRoutesModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
