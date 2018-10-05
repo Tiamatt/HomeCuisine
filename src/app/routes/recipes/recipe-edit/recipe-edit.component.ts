@@ -12,7 +12,6 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
   recipeId: number = null; // if null, then "new", otherwise "edit"
   recipe: any;
   recipeFormGroup: FormGroup;
-  recipeImage: string = '/src/assets/images/add-image.png';
   loaded: boolean = false;
 
   constructor(
@@ -56,19 +55,12 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
     });
   }
 
-  onSelectFile(event) {
-    if (event.target.files && event.target.files[0]) {
-      let reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        console.log('kaliLog_' + typeof(event.target['result']));
-        this.recipeImage = event.target['result'];
-        this.recipeFormGroup.patchValue({
-          'recipeImage': this.recipeImage
-        });
-      }
-    }
+  onImageUploadedAndCropped(event){
+    this.recipeFormGroup.patchValue({
+        'recipeImage': event
+    });
   }
+
 
   onSubmit() {
     console.log({'kaliLog': this.recipeFormGroup.value});

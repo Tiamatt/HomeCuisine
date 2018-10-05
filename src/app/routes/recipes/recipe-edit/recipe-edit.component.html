@@ -10,11 +10,17 @@
   </div>
 
  
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label>Recipe image</label>
     <img [src]="recipeImage" height="200" width="500"> <br/>
     <input type='file' (change)="onSelectFile($event)">
+  </div> -->
+  <div class="form-group">
+    <label>Recipe image</label>
+    <image-uploader-and-cropper (onImageUploadedAndCropped)="onImageUploadedAndCropped($event)"></image-uploader-and-cropper>
   </div>
+
+  <p>ennnd!</p>
 
 
    <!-- <div class="form-group">

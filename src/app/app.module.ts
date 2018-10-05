@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutesModule } from './routes/routes.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './layout/footer/footer.component';
@@ -13,6 +14,7 @@ import { MainComponent } from './routes/main/main.component';
 import { RecipeListComponent } from './routes/recipes/recipe-list/recipe-list.component';
 import { RecipeEditComponent } from './routes/recipes/recipe-edit/recipe-edit.component';
 import { RecipeViewComponent } from './routes/recipes/recipe-view/recipe-view.component';
+import { ImageUploaderAndCropperComponent } from './shared/components/image-uploader-and-cropper/image-uploader-and-cropper.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,13 @@ import { RecipeViewComponent } from './routes/recipes/recipe-view/recipe-view.co
     RecipeListComponent,
     RecipeEditComponent,
     RecipeViewComponent,
+    ImageUploaderAndCropperComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutesModule,
     ReactiveFormsModule,
+    ImageCropperModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

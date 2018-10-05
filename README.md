@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Reactive Forms (over Template-Driven Forms)
 - Promises
 - Libraries:
-    a) forimage upload and preview: ng2-fancy-image-uploader
+    a) for image upload and crop: ngx-image-cropper
 
 ## Development server
 
