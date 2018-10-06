@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MeasureService } from '../../../../../../shared/services/measure.service';
 
 @Component({
   selector: 'ingredient-edit',
@@ -13,7 +14,23 @@ export class IngredientEditComponent implements OnInit {
   selectedMeasureValue: number = null;
   results: any;
 
-  constructor() { }
+  constructor(private measureService: MeasureService) { }
+
+  private setMeasures() {
+    this.measureService.getMeasures().subscribe(
+      res => {
+        this.measures = res.map(x => {
+          return {
+            id: x['id'],
+            name: x['name']
+          };
+        })
+      },
+      err => {
+        console.log(err); // kali!
+      }
+    );
+  }
 
   onIngredientSelected(selectedIngredientId){
     console.log({
@@ -30,17 +47,11 @@ export class IngredientEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setMeasures();
     this.igredients = [
       {id:1, name: "ingredient1"},
       {id:2, name: "ingredient2"},
       {id:3, name: "ingredient3"},
-      {id:4, name: "tes"},
-    ];
-
-    this.measures = [
-      {id:1, name: "measure1"},
-      {id:2, name: "measure2"},
-      {id:3, name: "measure3"},
       {id:4, name: "tes"},
     ];
   }

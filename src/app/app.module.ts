@@ -2,8 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutesModule } from './routes/routes.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { ImageCropperModule } from 'ngx-image-cropper'; // npm package for image upload and crop
-
+// services
+import { MeasureService } from './shared/services/measure.service';
+// components
 import { AppComponent } from './app.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -37,11 +40,12 @@ import { ImageUploaderAndCropperComponent } from './shared/components/image-uplo
   imports: [
     BrowserModule,
     AppRoutesModule,
-    FormsModule, // required for NgSelectModule
+    FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     ImageCropperModule,
   ],
-  providers: [],
+  providers: [MeasureService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
