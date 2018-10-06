@@ -4,6 +4,7 @@ import { AppRoutesModule } from './routes/routes.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageCropperModule } from 'ngx-image-cropper'; // npm package for image upload and crop
+import { NgxSpinnerModule } from 'ngx-spinner'; // npm package for loading
 // services
 import { MeasureService } from './shared/services/measure.service';
 // components
@@ -44,6 +45,7 @@ import { ImageUploaderAndCropperComponent } from './shared/components/image-uplo
     ReactiveFormsModule,
     HttpClientModule,
     ImageCropperModule,
+    NgxSpinnerModule,
   ],
   providers: [MeasureService],
   bootstrap: [AppComponent]

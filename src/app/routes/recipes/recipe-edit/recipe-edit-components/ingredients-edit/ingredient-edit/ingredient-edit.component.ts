@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
 import { MeasureService } from '../../../../../../shared/services/measure.service';
 
@@ -14,7 +15,10 @@ export class IngredientEditComponent implements OnInit {
   selectedMeasureValue: number = null;
   results: any;
 
-  constructor(private measureService: MeasureService) { }
+  constructor(
+    private measureService: MeasureService,
+    private spinner: NgxSpinnerService,
+    ) { }
 
   private setMeasures() {
     this.measureService.getMeasures().subscribe(
@@ -46,14 +50,28 @@ export class IngredientEditComponent implements OnInit {
     });
   }
 
+  onDataLoad() {
+    if(this.measures && this.igredients) {
+      this.spinner.hide();
+      return true;
+    } else {
+      this.spinner.show();
+      return false;
+    }
+  }
+
   ngOnInit() {
     this.setMeasures();
-    this.igredients = [
-      {id:1, name: "ingredient1"},
-      {id:2, name: "ingredient2"},
-      {id:3, name: "ingredient3"},
-      {id:4, name: "tes"},
-    ];
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.igredients = [
+        {id:1, name: "ingredient1"},
+        {id:2, name: "ingredient2"},
+        {id:3, name: "ingredient3"},
+        {id:4, name: "tes"},
+      ];
+    }, 5000);
+    
   }
 
 }
