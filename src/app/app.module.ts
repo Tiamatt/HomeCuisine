@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // used by toaster
 import { NgModule } from '@angular/core';
 import { AppRoutesModule } from './routes/routes.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageCropperModule } from 'ngx-image-cropper'; // npm package for image upload and crop
 import { NgxSpinnerModule } from 'ngx-spinner'; // npm package for loading
+import { ToastrModule } from 'ng6-toastr-notifications';
 // services
 import { MeasureService } from './shared/services/measure.service';
 // components
@@ -40,12 +42,14 @@ import { ImageUploaderAndCropperComponent } from './shared/components/image-uplo
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutesModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     ImageCropperModule,
     NgxSpinnerModule,
+    ToastrModule.forRoot(),
   ],
   providers: [MeasureService],
   bootstrap: [AppComponent]

@@ -7,9 +7,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Reactive Forms (over Template-Driven Forms)
 - Promises
 - NPM pakages:
-    a) for image upload and crop: ngx-image-cropper
-    b) multiselect dropdown with adding new item: @ng-select/ng-select
+    a) image upload and crop: ngx-image-cropper
+    b) loading spinner: ngx-spinner
+    c) toaster notifications: ng6-toastr-notifications
 
+Note: 
+ b) multiselect dropdown with adding new item: @ng-select/ng-select
 
 ## Development server
 

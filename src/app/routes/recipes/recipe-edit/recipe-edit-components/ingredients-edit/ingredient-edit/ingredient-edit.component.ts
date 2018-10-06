@@ -1,6 +1,7 @@
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
 import { MeasureService } from '../../../../../../shared/services/measure.service';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'ingredient-edit',
@@ -18,6 +19,7 @@ export class IngredientEditComponent implements OnInit {
   constructor(
     private measureService: MeasureService,
     private spinner: NgxSpinnerService,
+    private toastr: ToastrManager,
     ) { }
 
   private setMeasures() {
@@ -28,7 +30,8 @@ export class IngredientEditComponent implements OnInit {
             id: x['id'],
             name: x['name']
           };
-        })
+        });
+        this.toastr.errorToastr('Can not load data for measure', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
       },
       err => {
         console.log(err); // kali!
