@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutesModule } from './routes/routes.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ImageCropperModule } from 'ngx-image-cropper';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ImageCropperModule } from 'ngx-image-cropper'; // npm package for image upload and crop
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './layout/footer/footer.component';
@@ -14,6 +14,8 @@ import { MainComponent } from './routes/main/main.component';
 import { RecipeListComponent } from './routes/recipes/recipe-list/recipe-list.component';
 import { RecipeEditComponent } from './routes/recipes/recipe-edit/recipe-edit.component';
 import { RecipeViewComponent } from './routes/recipes/recipe-view/recipe-view.component';
+import { IngredientsEditComponent } from './routes/recipes/recipe-edit/recipe-edit-components/ingredients-edit/ingredients-edit.component';
+import { IngredientEditComponent } from './routes/recipes/recipe-edit/recipe-edit-components/ingredients-edit/ingredient-edit/ingredient-edit.component';
 import { ImageUploaderAndCropperComponent } from './shared/components/image-uploader-and-cropper/image-uploader-and-cropper.component';
 
 @NgModule({
@@ -28,11 +30,14 @@ import { ImageUploaderAndCropperComponent } from './shared/components/image-uplo
     RecipeListComponent,
     RecipeEditComponent,
     RecipeViewComponent,
+    IngredientsEditComponent,
+    IngredientEditComponent,
     ImageUploaderAndCropperComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutesModule,
+    FormsModule, // required for NgSelectModule
     ReactiveFormsModule,
     ImageCropperModule,
   ],
