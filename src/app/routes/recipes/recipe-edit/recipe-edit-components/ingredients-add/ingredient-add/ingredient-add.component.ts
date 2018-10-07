@@ -1,4 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 import { GeneralService } from '../../../../../../shared/services/general.service';
 import { BaseComponent } from '../../../../../../core/BaseComponent';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -24,6 +25,7 @@ export class IngredientAddComponent extends BaseComponent implements OnInit {
     private generalService: GeneralService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrManager,
+    private ngxSmartModalService: NgxSmartModalService,
     ) { 
       super();
     }
@@ -70,6 +72,7 @@ export class IngredientAddComponent extends BaseComponent implements OnInit {
     }
   }
 
+
   ngOnInit() {
     this.setMeasures();
     setTimeout(() => {
@@ -80,7 +83,7 @@ export class IngredientAddComponent extends BaseComponent implements OnInit {
         {id:3, name: "ingredient3"},
         {id:4, name: "tes"},
       ];
-    }, 5000);
+    }, 1000);
     
   }
 

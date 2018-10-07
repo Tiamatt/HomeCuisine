@@ -1,5 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* -- BEGIN: FOR ngx-smart-modal npm package --  */
+$color-overlay: rgba(0, 0, 0, .7);
+$dialog-position-top: 20%;
+
+@import "~ngx-smart-modal/ngx-smart-modal";
+
+/* -- END -- */
+
+/* -- BEGIN: FOR  --  */
 .textbox-warning-c{
     border: 1px solid #dc3545;
     background-color: #E6B0AA;
 }
+/* -- END -- */

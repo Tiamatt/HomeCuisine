@@ -6,7 +6,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageCropperModule } from 'ngx-image-cropper'; // npm package for image upload and crop
 import { NgxSpinnerModule } from 'ngx-spinner'; // npm package for loading
-import { ToastrModule } from 'ng6-toastr-notifications';
+import { ToastrModule } from 'ng6-toastr-notifications'; // npm package for toaster message
+import { NgxSmartModalModule } from 'ngx-smart-modal'; // npm package for modal dialog
 // services
 import { FiltersService } from './shared/services/filters.service';
 import { GeneralService } from './shared/services/general.service';
@@ -57,6 +58,7 @@ import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient
     ImageCropperModule,
     NgxSpinnerModule,
     ToastrModule.forRoot(),
+    NgxSmartModalModule.forRoot(),
   ],
   providers: [
     FiltersService,

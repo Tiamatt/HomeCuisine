@@ -42,3 +42,14 @@
   color="#E49B24"
   type="ball-scale-multiple">
 </ngx-spinner>
+
+
+
+
+
+<button (click)="ngxSmartModalService.getModal('myModal').open()">Open myModal</button>
+<ngx-smart-modal #myModal identifier="myModal">
+  <p>My Modal DIalog Kali</p>
+
+  <button (click)="myModal.close()">Close</button>
+</ngx-smart-modal>
