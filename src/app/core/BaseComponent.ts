@@ -1,6 +1,6 @@
+import { GeneralService } from './../shared/services/general.service';
 import { HttpErrorResponse } from '@angular/common/http';
 export class BaseComponent {
-    
     constructor() {
     }
 

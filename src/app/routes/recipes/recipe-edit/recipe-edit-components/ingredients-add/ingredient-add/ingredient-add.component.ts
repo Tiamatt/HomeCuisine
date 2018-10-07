@@ -1,17 +1,17 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { GeneralService } from './../../../../../../shared/services/general.service';
-import { BaseComponent } from './../../../../../../core/BaseComponent';
+import { GeneralService } from '../../../../../../shared/services/general.service';
+import { BaseComponent } from '../../../../../../core/BaseComponent';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
 import { FiltersService } from '../../../../../../shared/services/filters.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
-  selector: 'ingredient-edit',
-  templateUrl: './ingredient-edit.component.html',
-  styleUrls: ['./ingredient-edit.component.scss']
+  selector: 'ingredient-add',
+  templateUrl: './ingredient-add.component.html',
+  styleUrls: ['./ingredient-add.component.scss']
 })
-export class IngredientEditComponent extends BaseComponent implements OnInit {
+export class IngredientAddComponent extends BaseComponent implements OnInit {
   igredients: Array<any>;
   selectedIngredientId: number = -1;
   measures: Array<any>;
@@ -40,14 +40,10 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
       },
       err => {
         console.log(err);
-        this.saveError(err);
-        this.toastr.errorToastr('Can not load data for measure', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
+        this.generalService.saveError(err).subscribe();
+        this.toastr.errorToastr('Can not load data for measure. Please, try later.', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
       }
     );
-  }
-
-  private saveError(error: HttpErrorResponse) {
-    this.generalService.saveError(error).subscribe();
   }
 
   onIngredientSelected(selectedIngredientId){
