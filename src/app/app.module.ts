@@ -10,6 +10,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
 // services
 import { FiltersService } from './shared/services/filters.service';
 import { GeneralService } from './shared/services/general.service';
+import { RecipesService } from './shared/services/recipes.service';
 // components
 import { AppComponent } from './app.component';
 import { FooterComponent } from './layout/footer/footer.component';
@@ -24,6 +25,9 @@ import { RecipeViewComponent } from './routes/recipes/recipe-view/recipe-view.co
 import { IngredientsAddComponent } from './routes/recipes/recipe-edit/recipe-edit-components/ingredients-add/ingredients-add.component';
 import { IngredientAddComponent } from './routes/recipes/recipe-edit/recipe-edit-components/ingredients-add/ingredient-add/ingredient-add.component';
 import { ImageUploaderAndCropperComponent } from './shared/components/image-uploader-and-cropper/image-uploader-and-cropper.component';
+import { IngredientListComponent } from './routes/recipes/ingredients/ingredient-list/ingredient-list.component';
+import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient-edit/ingredient-edit.component';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +44,8 @@ import { ImageUploaderAndCropperComponent } from './shared/components/image-uplo
     IngredientsAddComponent,
     IngredientAddComponent,
     ImageUploaderAndCropperComponent,
+    IngredientListComponent,
+    IngredientEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +61,7 @@ import { ImageUploaderAndCropperComponent } from './shared/components/image-uplo
   providers: [
     FiltersService,
     GeneralService,
+    RecipesService,
   ],
   bootstrap: [AppComponent]
 })

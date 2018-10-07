@@ -14,4 +14,9 @@ export class FiltersService extends BaseService{
         let apiUrl = this.baseApiUrl + "/filters/measures";
         return this.httpClient.get<any>(apiUrl);
     }
+
+    public getIngredients() {
+        let apiUrl = this.baseApiUrl + "/filters/ingredients";
+        return this.httpClient.get<any>(apiUrl);
+    }
 }
