@@ -8,7 +8,8 @@ import { ImageCropperModule } from 'ngx-image-cropper'; // npm package for image
 import { NgxSpinnerModule } from 'ngx-spinner'; // npm package for loading
 import { ToastrModule } from 'ng6-toastr-notifications';
 // services
-import { MeasureService } from './shared/services/measure.service';
+import { FiltersService } from './shared/services/filters.service';
+import { GeneralService } from './shared/services/general.service';
 // components
 import { AppComponent } from './app.component';
 import { FooterComponent } from './layout/footer/footer.component';
@@ -51,7 +52,10 @@ import { ImageUploaderAndCropperComponent } from './shared/components/image-uplo
     NgxSpinnerModule,
     ToastrModule.forRoot(),
   ],
-  providers: [MeasureService],
+  providers: [
+    FiltersService,
+    GeneralService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

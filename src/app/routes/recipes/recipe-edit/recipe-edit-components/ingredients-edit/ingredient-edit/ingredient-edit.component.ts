@@ -1,6 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { GeneralService } from './../../../../../../shared/services/general.service';
+import { BaseComponent } from './../../../../../../core/BaseComponent';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
-import { MeasureService } from '../../../../../../shared/services/measure.service';
+import { FiltersService } from '../../../../../../shared/services/filters.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
@@ -8,7 +11,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
   templateUrl: './ingredient-edit.component.html',
   styleUrls: ['./ingredient-edit.component.scss']
 })
-export class IngredientEditComponent implements OnInit {
+export class IngredientEditComponent extends BaseComponent implements OnInit {
   igredients: Array<any>;
   selectedIngredientId: number = -1;
   measures: Array<any>;
@@ -17,26 +20,34 @@ export class IngredientEditComponent implements OnInit {
   results: any;
 
   constructor(
-    private measureService: MeasureService,
+    private filtersService: FiltersService,
+    private generalService: GeneralService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrManager,
-    ) { }
+    ) { 
+      super();
+    }
 
   private setMeasures() {
-    this.measureService.getMeasures().subscribe(
+    this.filtersService.getMeasures().subscribe(
       res => {
-        this.measures = res.map(x => {
+        this.measures = res.map(item => {
           return {
-            id: x['id'],
-            name: x['name']
+            id: item['id'],
+            name: item['name']
           };
         });
-        this.toastr.errorToastr('Can not load data for measure', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
       },
       err => {
-        console.log(err); // kali!
+        console.log(err);
+        this.saveError(err);
+        this.toastr.errorToastr('Can not load data for measure', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
       }
     );
+  }
+
+  private saveError(error: HttpErrorResponse) {
+    this.generalService.saveError(error).subscribe();
   }
 
   onIngredientSelected(selectedIngredientId){
