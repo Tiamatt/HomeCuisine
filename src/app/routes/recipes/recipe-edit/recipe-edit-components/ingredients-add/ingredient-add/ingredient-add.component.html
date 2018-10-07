@@ -50,9 +50,4 @@
 
 
 <!-- Spin till data have been loaded -->
-<ngx-spinner *ngIf="!onDataLoad()" 
-  bdColor="rgba(51,51,51,0.8)"
-  size="large"
-  color="#E49B24"
-  type="ball-scale-multiple">
-</ngx-spinner>
+<loading-spinner *ngIf="!onDataLoad()"></loading-spinner>

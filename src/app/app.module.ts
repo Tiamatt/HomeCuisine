@@ -28,6 +28,7 @@ import { IngredientAddComponent } from './routes/recipes/recipe-edit/recipe-edit
 import { ImageUploaderAndCropperComponent } from './shared/components/image-uploader-and-cropper/image-uploader-and-cropper.component';
 import { IngredientListComponent } from './routes/recipes/ingredients/ingredient-list/ingredient-list.component';
 import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient-edit/ingredient-edit.component';
+import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient
     ImageUploaderAndCropperComponent,
     IngredientListComponent,
     IngredientEditComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,

@@ -89,7 +89,7 @@ export class IngredientAddComponent extends BaseComponent implements OnInit {
     //     {id:3, name: "ingredient3"},
     //     {id:4, name: "tes"},
     //   ];
-    // }, 1000);
+    // }, 5000);
     
   }
 
