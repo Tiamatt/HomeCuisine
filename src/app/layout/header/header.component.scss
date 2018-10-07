@@ -1,12 +1,9 @@
-// @font-face {
-//     font-family: 'Jokerman';
-//     src: url('/src/assets/fonts/Jokerman-Regular.ttf')  format('truetype'); /* Safari, Android, iOS */
-//     font-weight: bold;
-// }
+@import "~src/styles.scss";
+
 $header-height: 24px;
 
 .navbar{
-    border-bottom: 3px solid #E49B24;
+    border-bottom: 3px solid $color-orange-c;
 }
 .text-link-c{
     font-size: 1.1rem;
