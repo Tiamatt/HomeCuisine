@@ -1,16 +1,14 @@
+import { CoreService } from './../../core/CoreService';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable() //need to inject build-in HttpClient service
 
-export class FiltersService{
-    private baseApiUrl: string = "https://localhost:5001/api";
-    private header: Headers = new Headers({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-    });
+export class FiltersService extends CoreService{
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient) {
+        super();
+    }
 
     public getMeasures() {
         let apiUrl = this.baseApiUrl + "/filters/measures";
