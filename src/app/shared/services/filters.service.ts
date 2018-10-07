@@ -1,10 +1,10 @@
-import { CoreService } from './../../core/CoreService';
+import { BaseService } from '../../core/BaseService';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable() //need to inject build-in HttpClient service
 
-export class FiltersService extends CoreService{
+export class FiltersService extends BaseService{
 
     constructor(private httpClient: HttpClient) {
         super();

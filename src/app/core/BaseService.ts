@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable() //need to inject build-in HttpClient service
 
-export class CoreService{
+export class BaseService{
     baseApiUrl: string = "https://localhost:5001/api";
     header: Headers = new Headers({
         'Content-Type': 'application/json',
