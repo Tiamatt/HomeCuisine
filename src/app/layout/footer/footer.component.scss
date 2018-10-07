@@ -1,8 +1,10 @@
+@import "~src/styles.scss";
+
 .footer-c{
-    border-top: 3px solid #E49B24;
+    border-top: 3px solid $color-orange-c;
     p, a {
         font-size: 0.9rem;
-        color: rgba(228,155,36,1) !important;
+        color: $color-orange-c !important;
         font-weight: 600;
         padding: 8px; 
     }

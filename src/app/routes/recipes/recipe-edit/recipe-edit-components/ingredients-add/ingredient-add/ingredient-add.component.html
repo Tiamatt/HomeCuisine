@@ -9,10 +9,21 @@
               <option *ngFor="let igredient of igredients" [value]="igredient.id">{{igredient.name}}</option>
             </select>
             <div class="input-group-append">
-              <button class="btn btn-outline-warning" type="button">+</button>
+              <button 
+                class="btn btn-outline-warning" 
+                type="button" 
+                (click)="onCreateNewIngredient()"
+              >+</button>
             </div>
         </div>
     </div>
+
+    <!-- Modal dialog for creating new ingredient -->
+    <ngx-smart-modal #myModal identifier="myModal">
+      <ingredient-edit>
+        <button class="btn btn-outline-warning" (click)="myModal.close()">Cancel</button>
+      </ingredient-edit>
+    </ngx-smart-modal>
 
     <!-- Measure value textbox-->
     <div class="col-6 col-sm-2 pl-0 pb-2">
@@ -33,23 +44,15 @@
             </select>
         </div>
     </div>
+
   </div>
 </div>
 
+
+<!-- Spin till data have been loaded -->
 <ngx-spinner *ngIf="!onDataLoad()"
   bdColor="rgba(51,51,51,0.8)"
   size="large"
   color="#E49B24"
   type="ball-scale-multiple">
 </ngx-spinner>
-
-
-
-
-
-<button (click)="ngxSmartModalService.getModal('myModal').open()">Open myModal</button>
-<ngx-smart-modal #myModal identifier="myModal">
-  <p>My Modal DIalog Kali</p>
-
-  <button (click)="myModal.close()">Close</button>
-</ngx-smart-modal>

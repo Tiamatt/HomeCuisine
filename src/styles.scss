@@ -1,15 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+$color-dark-grey-c: #343A40;
+$color-light-grey-c: #DCDCDC;
+$color-orange-c: rgba(228,155,36,1);
+$color-light-green-c: #a5ad7a; /*for body background*/
+$color-dark-green-c:#373f1b;
 
 /* -- BEGIN: FOR ngx-smart-modal npm package --  */
 $color-overlay: rgba(0, 0, 0, .7);
 $dialog-position-top: 20%;
 
 @import "~ngx-smart-modal/ngx-smart-modal";
+.nsm-content{
+    background: $color-light-grey-c;
+}
 
 /* -- END -- */
 
 /* -- BEGIN: FOR  --  */
-.textbox-warning-c{
+.textbox-danger-c{
     border: 1px solid #dc3545;
     background-color: #E6B0AA;
 }

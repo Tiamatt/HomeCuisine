@@ -10,9 +10,8 @@ export class RecipesService extends BaseService{
         super();
     }
 
-    public saveIngredient(ingredientName: string) {
+    public saveIngredient(ingredientForm: any) {
         let apiUrl = this.baseApiUrl + "/recipes/ingredient";
-        let body = {"name": ingredientName};
-        return this.httpClient.post(apiUrl, body);
+        return this.httpClient.post(apiUrl, ingredientForm);
     }
 }

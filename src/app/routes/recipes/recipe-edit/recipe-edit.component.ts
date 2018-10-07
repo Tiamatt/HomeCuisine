@@ -47,7 +47,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
     });
   }
 
-  private setRecipeForm() {
+  private setRecipeForm() { // kali - rename
     this.recipeFormGroup = new FormGroup({
       'name': new FormControl(this.recipe['name']),
       'recipeImage': new FormControl(null),

@@ -48,6 +48,10 @@ export class IngredientAddComponent extends BaseComponent implements OnInit {
     );
   }
 
+  onCreateNewIngredient(){
+    this.ngxSmartModalService.getModal('myModal').open()
+  }
+
   onIngredientSelected(selectedIngredientId){
     console.log({
       'kaliLog_1': selectedIngredientId,
@@ -72,18 +76,20 @@ export class IngredientAddComponent extends BaseComponent implements OnInit {
     }
   }
 
-
   ngOnInit() {
     this.setMeasures();
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.igredients = [
-        {id:1, name: "ingredient1"},
-        {id:2, name: "ingredient2"},
-        {id:3, name: "ingredient3"},
-        {id:4, name: "tes"},
-      ];
-    }, 1000);
+    this.igredients = [
+      // {id:1, name: "ingredient1"},
+    ];
+    // setTimeout(() => {
+    //   /** spinner ends after 5 seconds */
+    //   this.igredients = [
+    //     {id:1, name: "ingredient1"},
+    //     {id:2, name: "ingredient2"},
+    //     {id:3, name: "ingredient3"},
+    //     {id:4, name: "tes"},
+    //   ];
+    // }, 1000);
     
   }
 
