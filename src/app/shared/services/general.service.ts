@@ -13,7 +13,7 @@ export class GeneralService extends BaseService{
         }
 
     public saveError(httpErrorResponse: HttpErrorResponse) {
-        let apiUrl = this.baseApiUrl + "/general/error";
+        let apiUrl = this.baseApiUrl + "/homecuisine/error";
         let body = {"description": httpErrorResponse.message};
         return this.httpClient.post(apiUrl, body);
     }
