@@ -47,6 +47,23 @@ export class IngredientAddComponent extends BaseComponent implements OnInit {
       }
     );
   }
+  private setIngredients() {
+    this.filtersService.getIngredients().subscribe(
+      res => {
+        this.igredients = res.map(item => {
+          return {
+            id: item['id'],
+            name: item['name']
+          };
+        });
+      },
+      err => {
+        console.log(err);
+        this.generalService.saveError(err).subscribe();
+        this.toastr.errorToastr('Can not load data for ingrediens. Please, try later.', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
+      }
+    );
+  }
 
   onCreateNewIngredient(){
     this.ngxSmartModalService.getModal('myModal').open()
@@ -78,9 +95,10 @@ export class IngredientAddComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     this.setMeasures();
-    this.igredients = [
-      // {id:1, name: "ingredient1"},
-    ];
+    this.setIngredients();
+    // this.igredients = [
+    //   // {id:1, name: "ingredient1"},
+    // ];
     // setTimeout(() => {
     //   /** spinner ends after 5 seconds */
     //   this.igredients = [
