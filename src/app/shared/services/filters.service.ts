@@ -11,12 +11,12 @@ export class FiltersService extends BaseService{
     }
 
     public getMeasures() {
-        let apiUrl = this.baseApiUrl + "/homecuisine/measures";
+        let apiUrl = this.baseApiUrl + "/measures";
         return this.httpClient.get<any>(apiUrl);
     }
 
     public getIngredients() {
-        let apiUrl = this.baseApiUrl + "/homecuisine/ingredients";
+        let apiUrl = this.baseApiUrl + "/ingredients";
         return this.httpClient.get<any>(apiUrl);
     }
 }
