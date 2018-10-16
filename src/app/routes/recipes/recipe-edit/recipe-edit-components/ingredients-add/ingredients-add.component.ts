@@ -24,7 +24,7 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
     private filtersService: FiltersService,
     private generalService: GeneralService,
     private spinner: NgxSpinnerService,
-    private toastr: ToastrManager,
+    private toastrManager: ToastrManager,
     private ngxSmartModalService: NgxSmartModalService,
     ) { 
       super();
@@ -43,7 +43,7 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
       err => {
         console.log(err);
         this.generalService.saveError(err).subscribe();
-        this.toastr.errorToastr('Can not load data for measure. Please, try later.', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
+        this.toastrManager.errorToastr('Can not load data for measure. Please, try later.', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
       }
     );
   }
@@ -60,13 +60,13 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
       err => {
         console.log(err);
         this.generalService.saveError(err).subscribe();
-        this.toastr.errorToastr('Can not load data for ingrediens. Please, try later.', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
+        this.toastrManager.errorToastr('Can not load data for ingrediens. Please, try later.', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
       }
     );
   }
 
-  onCreateNewIngredient(){
-    this.ngxSmartModalService.getModal('myModal').open()
+  onSaveIngredient($event){
+    this.ngxSmartModalService.getModal('myModal').close();
   }
 
   onIngredientSelected(selectedIngredientId){
