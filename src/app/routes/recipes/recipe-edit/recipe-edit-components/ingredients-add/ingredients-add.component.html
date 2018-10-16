@@ -1,2 +1,55 @@
-<ingredient-add></ingredient-add>
+<div class="container  mb-3" *ngIf="onDataLoad()">
+    <div class="row">
+      
+      <!-- Ingredient dropdown -->
+      <div class="col-12 col-sm-7 pl-0 pb-2">
+          <div class="input-group">
+              <select class="custom-select" name="selectedIngredientId" [ngModel]="selectedIngredientId" (ngModelChange)="onIngredientSelected($event)">
+                <option [value]="-1" selected>-- start typing or select ingredient --</option>
+                <option *ngFor="let igredient of igredients" [value]="igredient.id">{{igredient.name}}</option>
+              </select>
+              <div class="input-group-append">
+                <button 
+                  class="btn btn-outline-warning" 
+                  type="button" 
+                  (click)="onCreateNewIngredient()"
+                >+</button>
+              </div>
+          </div>
+      </div>
+  
+      <!-- Modal dialog for creating new ingredient -->
+      <ngx-smart-modal #myModal identifier="myModal">
+        <ingredient-edit>
+          <button class="btn btn-outline-warning" (click)="myModal.close()">Cancel</button>
+        </ingredient-edit>
+      </ngx-smart-modal>
+  
+      <!-- Measure value textbox-->
+      <div class="col-6 col-sm-2 pl-0 pb-2">
+        <input type="text"
+        name="selectedMeasureValue"
+        [ngModel]="selectedMeasureValue"
+        (ngModelChange)="onMeasureValueChange($event)" 
+        class="form-control red-border-c"
+        placeholder="1">
+      </div>
+  
+      <!-- Measure dropdown -->
+      <div class="col-6 col-sm-3 pl-0 pb-2">
+          <div class="input-group">
+              <select class="custom-select" name="selectedMeasureId" [ngModel]="selectedMeasureId" (ngModelChange)="onMeasureSelected($event)">
+                <option [value]="-1" selected>-- select --</option>
+                <option *ngFor="let measure of measures" [value]="measure.id">{{measure.name}}</option>
+              </select>
+          </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  
+  <!-- Spin till data have been loaded -->
+  <loading-spinner *ngIf="!onDataLoad()"></loading-spinner>
+  
 <button type="button" class="btn btn-warning btn-sm">Add ingredient</button>

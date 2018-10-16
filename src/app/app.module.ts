@@ -24,7 +24,6 @@ import { RecipeListComponent } from './routes/recipes/recipe-list/recipe-list.co
 import { RecipeEditComponent } from './routes/recipes/recipe-edit/recipe-edit.component';
 import { RecipeViewComponent } from './routes/recipes/recipe-view/recipe-view.component';
 import { IngredientsAddComponent } from './routes/recipes/recipe-edit/recipe-edit-components/ingredients-add/ingredients-add.component';
-import { IngredientAddComponent } from './routes/recipes/recipe-edit/recipe-edit-components/ingredients-add/ingredient-add/ingredient-add.component';
 import { ImageUploaderAndCropperComponent } from './shared/components/image-uploader-and-cropper/image-uploader-and-cropper.component';
 import { IngredientListComponent } from './routes/recipes/ingredients/ingredient-list/ingredient-list.component';
 import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient-edit/ingredient-edit.component';
@@ -44,7 +43,6 @@ import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loa
     RecipeEditComponent,
     RecipeViewComponent,
     IngredientsAddComponent,
-    IngredientAddComponent,
     ImageUploaderAndCropperComponent,
     IngredientListComponent,
     IngredientEditComponent,
