@@ -29,38 +29,30 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
     }
 
   private setMeasures() {
-    this.apisService.getMeasures().subscribe(
+    this.apisService.getFilter('measure').then(
       res => {
-        this.measures = res.map(item => {
-          return {
-            id: item['id'],
-            name: item['name']
-          };
-        });
-      },
+        this.measures = res;
+      }
+    )
+    .catch(
       err => {
-        console.log(err);
         this.apisService.saveError(err).subscribe();
         this.toastrManager.errorToastr('Can not load data for measure. Please, try later.', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
       }
     );
   }
   private setIngredients() {
-    this.apisService.getIngredients().subscribe(
+    this.apisService.getFilter('ingredient').then(
       res => {
-        this.igredients = res.map(item => {
-          return {
-            id: item['id'],
-            name: item['name']
-          };
-        });
-      },
-      err => {
-        console.log(err);
-        this.apisService.saveError(err).subscribe();
-        this.toastrManager.errorToastr('Can not load data for ingrediens. Please, try later.', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
-      }
-    );
+        this.igredients = res;
+      })
+      .catch(
+        err => {
+          this.apisService.saveError(err).subscribe();
+          this.toastrManager.errorToastr('Can not load data for ingrediens. Please, try later.', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
+        }
+      );
+  
   }
 
   onSaveIngredient($event){

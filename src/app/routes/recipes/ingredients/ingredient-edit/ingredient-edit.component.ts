@@ -1,11 +1,11 @@
-import { NameValueCheckedModel } from './../../../../shared/models/name-value-checked.model';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ToastrManager } from 'ng6-toastr-notifications';
+import { FormGroup, FormControl } from '@angular/forms';
 import { BaseComponent } from './../../../../core/BaseComponent';
+import { ToastrManager } from 'ng6-toastr-notifications';
 import { ApisService } from './../../../../shared/services/apis.service';
 import { NullOrWhiteSpaceValidatorDirectiveFn } from 'src/app/shared/directives/null-or-white-space-validator.directive';
 import { UniqueInDbValidatorDirectiveFn } from 'src/app/shared/directives/unique-in-db-validator.directive';
+import { FilterModel } from './../../../../shared/models/filter.model';
 
 @Component({
   selector: 'ingredient-edit',
@@ -15,7 +15,7 @@ import { UniqueInDbValidatorDirectiveFn } from 'src/app/shared/directives/unique
 
 // Add new ingredient (by name)
 export class IngredientEditComponent extends BaseComponent implements OnInit {
-  @Output() onSaveIngredient = new EventEmitter<NameValueCheckedModel>();
+  @Output() onSaveIngredient = new EventEmitter<FilterModel>();
   ingredientFormGroup: FormGroup;
 
   constructor(
@@ -38,13 +38,13 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
     this.apisService.saveIngredient(this.ingredientFormGroup.value).subscribe(
       res => {
         this.toastrManager.successToastr("Ingredient have been saved successfully", "Saved");
-        let newIngredient = new NameValueCheckedModel( res['name'], res['id']);
+        let newIngredient = new FilterModel(res['name'], res['id']);
         this.onSaveIngredient.emit(newIngredient);
       },
       err => {
         this.toastrManager.errorToastr("Couldn't save new ingredient", "Ooops!");
         this.onSaveIngredient.emit(null);
-        // kali - save error in db
+        this.apisService.saveError(err);
       }
     );
   }

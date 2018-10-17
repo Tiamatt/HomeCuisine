@@ -3,9 +3,9 @@ import { AsyncValidator, AbstractControl, ValidationErrors, AsyncValidatorFn, NG
 import { Observable } from 'rxjs';
 import { ApisService } from '../services/apis.service';
 
-export function UniqueInDbValidatorDirectiveFn(apisService: ApisService, objectName: string) : AsyncValidatorFn {
+export function UniqueInDbValidatorDirectiveFn(apisService: ApisService, entityName: string) : AsyncValidatorFn {
     return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
-    return apisService.checkUniqueness(objectName, control.value)
+    return apisService.checkUniqueness(entityName, control.value)
     .then(
       (isUnique: boolean | null) => {
         return (isUnique) ? null : {'notUniqueInDb': true};
@@ -26,11 +26,11 @@ export function UniqueInDbValidatorDirectiveFn(apisService: ApisService, objectN
 })
 
 export class UniqueInDbValidatorDirective implements AsyncValidator {
-  @Input() validatorObjectName: string;
+  @Input() validatorEntityName: string;
   constructor(private apisService: ApisService) {}
 
   validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null>  {
-    return UniqueInDbValidatorDirectiveFn(this.apisService, this.validatorObjectName)(control);
+    return UniqueInDbValidatorDirectiveFn(this.apisService, this.validatorEntityName)(control);
   }
 
 }

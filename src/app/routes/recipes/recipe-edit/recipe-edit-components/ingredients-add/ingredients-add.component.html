@@ -6,7 +6,7 @@
           <div class="input-group">
               <select class="custom-select" name="selectedIngredientId" [ngModel]="selectedIngredientId" (ngModelChange)="onIngredientSelected($event)">
                 <option [value]="-1" selected>-- start typing or select ingredient --</option>
-                <option *ngFor="let igredient of igredients" [value]="igredient.id">{{igredient.name}}</option>
+                <option *ngFor="let igredient of igredients" [value]="igredient.value">{{igredient.name}}</option>
               </select>
               <div class="input-group-append">
                 <button 
@@ -40,7 +40,7 @@
           <div class="input-group">
               <select class="custom-select" name="selectedMeasureId" [ngModel]="selectedMeasureId" (ngModelChange)="onMeasureSelected($event)">
                 <option [value]="-1" selected>-- select --</option>
-                <option *ngFor="let measure of measures" [value]="measure.id">{{measure.name}}</option>
+                <option *ngFor="let measure of measures" [value]="measure.value">{{measure.name}}</option>
               </select>
           </div>
       </div>

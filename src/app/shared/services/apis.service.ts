@@ -1,3 +1,4 @@
+import { FilterModel } from './../models/filter.model';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { BaseService } from '../../core/BaseService';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -21,15 +22,16 @@ export class ApisService extends BaseService{
     }
 
     // BEGIN: CRUD -> READ -> GET LIST (returns list of items)
+    
+    public getFilter(entityName:string): Promise<FilterModel[]> {
+        // development error
+        if (this.isNullOrWhiteSpace(entityName)) {
+            this.toastrManager.errorToastr("EntityName can't be empty. Called from ApisService -> getFilter()", "Dev error!");
+            return new Promise(null);
+        }
 
-    public getMeasures() {
-        let apiUrl = this.baseApiUrl + "/measures";
-        return this.httpClient.get<any>(apiUrl);
-    }
-
-    public getIngredients() {
-        let apiUrl = this.baseApiUrl + "/ingredients";
-        return this.httpClient.get<any>(apiUrl);
+        let apiUrl = this.baseApiUrl + "/filter/" + entityName;
+        return this.httpClient.get<FilterModel[]>(apiUrl).toPromise();
     }
 
     // END: CRUD -> READ -> GET LIST (returns list of items)
@@ -37,14 +39,17 @@ export class ApisService extends BaseService{
 
     // BEGIN: CRUD -> READ -> CHECK (returns true/false)
 
-    public checkUniqueness(objectName:string, value: string): Promise<boolean> | null {
+    public checkUniqueness(entityName:string, value: string): Promise<boolean> | null {
         // development error
-        if (this.isNullOrWhiteSpace(value)) {
-            this.toastrManager.errorToastr("Value for " + objectName + " can't be empty", "Ooops");
+        if (this.isNullOrWhiteSpace(entityName) || this.isNullOrWhiteSpace(value)) {
+            let errorMessage = (this.isNullOrWhiteSpace(entityName)) 
+            ? "EntityName can't be empty. Called from ApisService -> checkUniqueness()"
+            : "Value for checking uniqueness can't be empty. Called from ApisService -> checkUniqueness())";
+            this.toastrManager.errorToastr(errorMessage, "Dev error!");
             return new Promise(null);
         }
 
-        let apiUrl = this.baseApiUrl + "/" + objectName + "-unique/" + value;
+        let apiUrl = this.baseApiUrl + "/" + entityName + "-unique/" + value;
             return this.httpClient.get<boolean>(apiUrl).toPromise();
     }
 
