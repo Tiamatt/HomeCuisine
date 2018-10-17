@@ -10,17 +10,5 @@ export class BaseComponent {
         let regexp = (isIcludeZero) ? /^\+?(0|[1-9]\d*)$/ :  /^\+?[1-9]\d*$/;
         return regexp.test(stringNumber);
     }
-
-    // ---------------- BEGIN: VALIDATORS ----------------------- //
     
-    nullOrWhiteSpaceValidator(control: FormControl):{[s: string]: boolean} {
-        if(control.value == null 
-            || control.value.length === 0 
-            || (control.value.trim().length === 0) ){
-                return {'nullOrWhiteSpace': true};
-            }
-            return null;
-    }
-
-    // ---------------- END: VALIDATORS ----------------------- //
 }
