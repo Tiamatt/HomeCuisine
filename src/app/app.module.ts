@@ -9,9 +9,7 @@ import { NgxSpinnerModule } from 'ngx-spinner'; // npm package for loading
 import { ToastrModule } from 'ng6-toastr-notifications'; // npm package for toaster message
 import { NgxSmartModalModule } from 'ngx-smart-modal'; // npm package for modal dialog
 // services
-import { FiltersService } from './shared/services/filters.service';
-import { GeneralService } from './shared/services/general.service';
-import { RecipesService } from './shared/services/recipes.service';
+import { ApisService } from './shared/services/apis.service';
 // directives
 import { NullOrWhiteSpaceValidatorDirective } from './shared/directives/null-or-white-space-validator.directive';
 // components
@@ -64,9 +62,7 @@ import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient
     NgxSmartModalModule.forRoot(),
   ],
   providers: [
-    FiltersService,
-    GeneralService,
-    RecipesService,
+    ApisService,
   ],
   bootstrap: [AppComponent]
 })

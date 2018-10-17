@@ -3,7 +3,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { BaseComponent } from './../../../../core/BaseComponent';
-import { RecipesService } from './../../../../shared/services/recipes.service';
+import { ApisService } from './../../../../shared/services/apis.service';
 import { NullOrWhiteSpaceValidatorDirectiveFn } from 'src/app/shared/directives/null-or-white-space-validator.directive';
 
 @Component({
@@ -18,7 +18,7 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
   ingredientFormGroup: FormGroup;
 
   constructor(
-    private recipesService: RecipesService,
+    private apisService: ApisService,
     private toastrManager: ToastrManager,
   ) {
     super();
@@ -31,7 +31,7 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
   }
   
   // private ingredientUniquenessValidator(control: FormControl):{[s: string]: boolean} {
-  //   this.recipesService.checkIngredientUniqueness(control.value).subscribe(
+  //   this.apisService.checkIngredientUniqueness(control.value).subscribe(
   //     res => {
   //       return (res === true) ? null : {'ingredientUniqueness': false};
   //     }, 
@@ -42,7 +42,7 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
   // }
 
   onSubmit() {
-    this.recipesService.saveIngredient(this.ingredientFormGroup.value).subscribe(
+    this.apisService.saveIngredient(this.ingredientFormGroup.value).subscribe(
       res => {
         this.toastrManager.successToastr("Ingredient have been saved successfully", "Saved");
         let newIngredient = new NameValueCheckedModel( res['name'], res['id']);

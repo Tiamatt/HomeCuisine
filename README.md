@@ -5,7 +5,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Features
 
 - Reactive Forms (over Template-Driven Forms)
-- Custom async validators
+- Custom sync and async validators
+- Custom directives
 - Promises
 - NPM pakages:
     a) image upload and crop: ngx-image-cropper

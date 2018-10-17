@@ -3,8 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { BaseComponent } from './../../../../../core/BaseComponent';
-import { GeneralService } from './../../../../../shared/services/general.service';
-import { FiltersService } from './../../../../../shared/services/filters.service';
+import { ApisService } from './../../../../../shared/services/apis.service';
 
 @Component({
   selector: 'ingredients-add',
@@ -21,8 +20,7 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
   results: any;
 
   constructor(
-    private filtersService: FiltersService,
-    private generalService: GeneralService,
+    private apisService: ApisService,
     private spinner: NgxSpinnerService,
     private toastrManager: ToastrManager,
     private ngxSmartModalService: NgxSmartModalService,
@@ -31,7 +29,7 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
     }
 
   private setMeasures() {
-    this.filtersService.getMeasures().subscribe(
+    this.apisService.getMeasures().subscribe(
       res => {
         this.measures = res.map(item => {
           return {
@@ -42,13 +40,13 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
       },
       err => {
         console.log(err);
-        this.generalService.saveError(err).subscribe();
+        this.apisService.saveError(err).subscribe();
         this.toastrManager.errorToastr('Can not load data for measure. Please, try later.', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
       }
     );
   }
   private setIngredients() {
-    this.filtersService.getIngredients().subscribe(
+    this.apisService.getIngredients().subscribe(
       res => {
         this.igredients = res.map(item => {
           return {
@@ -59,7 +57,7 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
       },
       err => {
         console.log(err);
-        this.generalService.saveError(err).subscribe();
+        this.apisService.saveError(err).subscribe();
         this.toastrManager.errorToastr('Can not load data for ingrediens. Please, try later.', 'Ooops!', { position: "top-right", dismiss:"click", showCloseButton: true});
       }
     );
