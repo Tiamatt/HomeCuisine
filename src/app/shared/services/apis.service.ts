@@ -1,3 +1,4 @@
+import { ToastrManager } from 'ng6-toastr-notifications';
 import { BaseService } from '../../core/BaseService';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -12,7 +13,10 @@ export class ApisService extends BaseService{
         'Access-Control-Allow-Origin': '*'
     });
 
-    constructor(private httpClient: HttpClient) {
+    constructor(
+        private httpClient: HttpClient,
+        private toastrManager: ToastrManager,) {
+        
         super();
     }
 
@@ -33,9 +37,15 @@ export class ApisService extends BaseService{
 
     // BEGIN: CRUD -> READ -> CHECK (returns true/false)
 
-    public checkUniqueness(objectName:string, ingredientName: string): Promise<boolean> {
-        let apiUrl = this.baseApiUrl + "/" + objectName + "-unique/" + ingredientName;
-        return this.httpClient.get<boolean>(apiUrl).toPromise();
+    public checkUniqueness(objectName:string, value: string): Promise<boolean> | null {
+        // development error
+        if (this.isNullOrWhiteSpace(value)) {
+            this.toastrManager.errorToastr("Value for " + objectName + " can't be empty", "Ooops");
+            return new Promise(null);
+        }
+
+        let apiUrl = this.baseApiUrl + "/" + objectName + "-unique/" + value;
+            return this.httpClient.get<boolean>(apiUrl).toPromise();
     }
 
     // END: CRUD -> READ -> CHECK (returns true/false)

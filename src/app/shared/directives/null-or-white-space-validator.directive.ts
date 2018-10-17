@@ -12,8 +12,9 @@ export function NullOrWhiteSpaceValidatorDirectiveFn() : ValidatorFn {
   };
 }
 
+// kali! haven't tested the directive!!!
 @Directive({
-  selector: '[appNullOrWhiteSpaceValidator]',
+  selector: '[nullOrWhiteSpace][formControlName],[nullOrWhiteSpace][formControl],[nullOrWhiteSpace][ngModel]',
   providers: [{provide: NG_VALIDATORS, useExisting: NullOrWhiteSpaceValidatorDirective, multi: true}]
 })
 export class NullOrWhiteSpaceValidatorDirective implements Validator {

@@ -7,7 +7,7 @@ export function UniqueInDbValidatorDirectiveFn(apisService: ApisService, objectN
     return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
     return apisService.checkUniqueness(objectName, control.value)
     .then(
-      (isUnique: boolean) => {
+      (isUnique: boolean | null) => {
         return (isUnique) ? null : {'notUniqueInDb': true};
       }
     ).catch(
