@@ -1,9 +1,10 @@
 import { NameValueCheckedModel } from './../../../../shared/models/name-value-checked.model';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { BaseComponent } from './../../../../core/BaseComponent';
 import { RecipesService } from './../../../../shared/services/recipes.service';
+import { NullOrWhiteSpaceValidatorDirectiveFn } from 'src/app/shared/directives/null-or-white-space-validator.directive';
 
 @Component({
   selector: 'ingredient-edit',
@@ -25,9 +26,20 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
 
   private setIngredientFormGroup() {
     this.ingredientFormGroup = new FormGroup({
-      'name': new FormControl(null),
+      'name': new FormControl(null, [ NullOrWhiteSpaceValidatorDirectiveFn()]),// , [this.nullOrWhiteSpaceValidator.bind(this)]),
     });
   }
+  
+  // private ingredientUniquenessValidator(control: FormControl):{[s: string]: boolean} {
+  //   this.recipesService.checkIngredientUniqueness(control.value).subscribe(
+  //     res => {
+  //       return (res === true) ? null : {'ingredientUniqueness': false};
+  //     }, 
+  //     err => {
+  //       return {'ingredientUniqueness': false};
+  //     } 
+  //   );
+  // }
 
   onSubmit() {
     this.recipesService.saveIngredient(this.ingredientFormGroup.value).subscribe(

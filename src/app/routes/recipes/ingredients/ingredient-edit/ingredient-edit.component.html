@@ -8,11 +8,12 @@
   <div class="form-group mb-4">
     <label for="name">Ingredient name</label>
     <input type="text" id="name" formControlName="name" class="form-control" placeholder="your ingredient name">
+    <p *ngIf="!ingredientFormGroup.get('name').valid && ingredientFormGroup.get('name').touched" class="text-danger">Value can't be empty</p>
   </div>
 
   <div class="form-group float-right">
     <ng-content></ng-content> <!-- cancel button -->
-    <button type="submit" class="btn btn-primary m-2">Save</button>
+    <button type="submit" class="btn btn-primary m-2" [disabled]="!ingredientFormGroup.valid">Save</button>
   </div>
 
 </form>

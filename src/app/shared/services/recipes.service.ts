@@ -14,4 +14,9 @@ export class RecipesService extends BaseService{
         let apiUrl = this.baseApiUrl + "/ingredient";
         return this.httpClient.post(apiUrl, ingredientForm);
     }
+
+    public checkIngredientUniqueness(ingredientName: string) {
+        let apiUrl = this.baseApiUrl + "/ingredient-unique/" + ingredientName;
+        return this.httpClient.get(apiUrl);
+    }
 }
