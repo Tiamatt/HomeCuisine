@@ -12,6 +12,7 @@ import { NgxSmartModalModule } from 'ngx-smart-modal'; // npm package for modal 
 import { ApisService } from './shared/services/apis.service';
 // directives
 import { NullOrWhiteSpaceValidatorDirective } from './shared/directives/null-or-white-space-validator.directive';
+import { UniqueInDbValidatorDirective } from './shared/directives/unique-in-db-validator.directive';
 // components
 import { AppComponent } from './app.component';
 import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
@@ -32,6 +33,7 @@ import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient
 @NgModule({
   declarations: [
     NullOrWhiteSpaceValidatorDirective,
+    UniqueInDbValidatorDirective,
     AppComponent,
     FooterComponent,
     HeaderComponent,

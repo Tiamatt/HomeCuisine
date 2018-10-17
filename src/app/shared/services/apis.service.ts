@@ -33,9 +33,9 @@ export class ApisService extends BaseService{
 
     // BEGIN: CRUD -> READ -> CHECK (returns true/false)
 
-    public checkIngredientUniqueness(ingredientName: string) {
-        let apiUrl = this.baseApiUrl + "/ingredient-unique/" + ingredientName;
-        return this.httpClient.get(apiUrl);
+    public checkUniqueness(objectName:string, ingredientName: string): Promise<boolean> {
+        let apiUrl = this.baseApiUrl + "/" + objectName + "-unique/" + ingredientName;
+        return this.httpClient.get<boolean>(apiUrl).toPromise();
     }
 
     // END: CRUD -> READ -> CHECK (returns true/false)
@@ -49,7 +49,7 @@ export class ApisService extends BaseService{
     }
 
     public saveError(httpErrorResponse: HttpErrorResponse) {
-        let apiUrl = this.baseApiUrl + "/homecuisine/error";
+        let apiUrl = this.baseApiUrl + "/error";
         let body = {"description": httpErrorResponse.message};
         return this.httpClient.post(apiUrl, body);
     }

@@ -5,6 +5,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { BaseComponent } from './../../../../core/BaseComponent';
 import { ApisService } from './../../../../shared/services/apis.service';
 import { NullOrWhiteSpaceValidatorDirectiveFn } from 'src/app/shared/directives/null-or-white-space-validator.directive';
+import { UniqueInDbValidatorDirectiveFn } from 'src/app/shared/directives/unique-in-db-validator.directive';
 
 @Component({
   selector: 'ingredient-edit',
@@ -26,20 +27,12 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
 
   private setIngredientFormGroup() {
     this.ingredientFormGroup = new FormGroup({
-      'name': new FormControl(null, [ NullOrWhiteSpaceValidatorDirectiveFn()]),// , [this.nullOrWhiteSpaceValidator.bind(this)]),
+      'name': new FormControl(
+        null, 
+        [NullOrWhiteSpaceValidatorDirectiveFn()], // array of sync validators
+        [UniqueInDbValidatorDirectiveFn(this.apisService, 'ingredient')]),// array of async validators
     });
   }
-  
-  // private ingredientUniquenessValidator(control: FormControl):{[s: string]: boolean} {
-  //   this.apisService.checkIngredientUniqueness(control.value).subscribe(
-  //     res => {
-  //       return (res === true) ? null : {'ingredientUniqueness': false};
-  //     }, 
-  //     err => {
-  //       return {'ingredientUniqueness': false};
-  //     } 
-  //   );
-  // }
 
   onSubmit() {
     this.apisService.saveIngredient(this.ingredientFormGroup.value).subscribe(
