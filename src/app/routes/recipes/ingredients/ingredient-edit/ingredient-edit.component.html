@@ -8,7 +8,7 @@
   
   <!-- Ingredient name INPUT -->
   <div class="form-group mb-4">
-    <label for="name">Ingredient name</label>
+    <label for="name">Name *</label>
     <input type="text" id="name" formControlName="name" class="form-control" placeholder="your ingredient name">
     <div *ngIf="ingredientFormGroup.get('name').touched && ingredientFormGroup.get('name').invalid">
       <p *ngIf="ingredientFormGroup.get('name').errors['nullOrWhiteSpace']" class="alert alert-danger p-1 mt-2"> 
@@ -20,8 +20,6 @@
       <p *ngIf="ingredientFormGroup.get('name').errors['notUniqueInDb_apiError']" class="alert alert-danger p-1 mt-2"> 
           * Api error, please try again later
       </p>
-      
-      
     </div>
   </div>
 

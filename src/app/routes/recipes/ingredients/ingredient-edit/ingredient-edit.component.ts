@@ -28,9 +28,10 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
   private setIngredientFormGroup() {
     this.ingredientFormGroup = new FormGroup({
       'name': new FormControl(
-        null, 
+        null, // default value
         [NullOrWhiteSpaceValidatorDirectiveFn()], // array of sync validators
-        [UniqueInDbValidatorDirectiveFn(this.apisService, 'ingredient')]),// array of async validators
+        [UniqueInDbValidatorDirectiveFn(this.apisService, 'ingredient')] // array of async validators
+      ),
     });
   }
 
@@ -38,8 +39,8 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
     this.apisService.saveIngredient(this.ingredientFormGroup.value).subscribe(
       res => {
         this.toastrManager.successToastr("Ingredient have been saved successfully", "Saved");
-        let newIngredient = new FilterModel(res['name'], res['id']);
-        this.onSaveIngredient.emit(newIngredient);
+        this.onSaveIngredient.emit(new FilterModel(res['name'], res['id'], true));
+        this.ingredientFormGroup.reset();
       },
       err => {
         this.toastrManager.errorToastr("Couldn't save new ingredient", "Ooops!");

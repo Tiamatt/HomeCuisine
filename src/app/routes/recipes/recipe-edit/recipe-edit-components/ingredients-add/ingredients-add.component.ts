@@ -56,6 +56,7 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
   }
 
   onSaveIngredient($event){
+    console.log({'kaliLog_onSaveIngredient': $event});
     this.ngxSmartModalService.getModal('myModal').close();
   }
 
