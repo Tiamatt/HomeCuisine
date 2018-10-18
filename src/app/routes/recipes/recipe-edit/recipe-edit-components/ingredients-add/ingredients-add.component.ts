@@ -6,6 +6,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { BaseComponent } from './../../../../../core/BaseComponent';
 import { ApisService } from './../../../../../shared/services/apis.service';
+import { Guid } from "guid-typescript";
 
 @Component({
   selector: 'ingredients-add',
@@ -92,14 +93,14 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
     } else if (this.selectedMeasureValue == "-1") {
       this.toastrManager.warningToastr("Please, select measure", "Wait!");
     } else  {
-      let d = new IngredientModel(
+      let item = new IngredientModel(
         this.getFilterNameByFilterValue(this.igredients, this.selectedIngredientValue),
         this.selectedIngredientValue,
         this.selectedAmount,
         this.getFilterNameByFilterValue(this.measures, this.selectedMeasureValue),
         this.selectedMeasureValue,
       );
-      this.items.push(d);
+      this.items.push(item);
       console.log(this.items);
     }
   }
@@ -107,6 +108,7 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.setMeasures();
     this.setIngredients();
+    console.log('kaliLog - ' + Guid.create());
     // this.igredients = [
     //   // {id:1, name: "ingredient1"},
     // ];

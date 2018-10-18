@@ -12,6 +12,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     a) image upload and crop: ngx-image-cropper
     b) loading spinner: ngx-spinner
     c) toaster notifications: ng6-toastr-notifications
+    e) guid-typescript for Guid
 
 Note: 
  b) multiselect dropdown with adding new item: @ng-select/ng-select
