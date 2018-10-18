@@ -8,13 +8,21 @@ $color-dark-green-c:#373f1b;
 /* -- BEGIN: FOR ngx-smart-modal npm package --  */
 $color-overlay: rgba(0, 0, 0, .7);
 $dialog-position-top: 20%;
-
 @import "~ngx-smart-modal/ngx-smart-modal";
 .nsm-content{
     background: $color-light-grey-c;
 }
+/* -- END --  */
 
-/* -- END -- */
+
+/* -- BEGIN: FOR FULL HEIGHT OF THE PAGE --  */
+html,body {
+    margin:0;
+    padding:0;
+    height:100%; /* needed for container min-height */
+}
+/* -- END --  */
+
 
 /* -- BEGIN: FOR  --  */
 .textbox-danger-c{
