@@ -1,8 +1,8 @@
 <!-- List of selected items -->
-<div *ngFor="let item of items">
+<div *ngFor="let selection of selections">
   <div class="mb-2 box-c pl-3">
-    <p class="float-left">{{item.ingredientName + 'bla' }}</p>
-    <i class="fa fa-times-circle float-right" aria-hidden="true"></i>
+    <p class="float-left">{{selection.ingredientName + ' - ' + selection.amount  + ' ' + selection.measureName }}</p>
+    <i class="fa fa-times-circle float-right" aria-hidden="true" (click)="onRemove(selection.id)"></i>
   </div>
   <div class="clearfix"></div> 
 </div>

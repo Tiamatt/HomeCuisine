@@ -1,5 +1,6 @@
 export class IngredientModel{
     constructor(
+        public id: string,
         public ingredientName: string,
         public ingredientValue: string,
         public amount: string,

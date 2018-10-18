@@ -1,12 +1,12 @@
-import { IngredientModel } from './../../../../../shared/models/ingredient.model';
-import { FilterModel } from './../../../../../shared/models/filter.model';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { BaseComponent } from './../../../../../core/BaseComponent';
 import { ApisService } from './../../../../../shared/services/apis.service';
-import { Guid } from "guid-typescript";
+import { Guid } from 'guid-typescript';
+import { IngredientModel } from './../../../../../shared/models/ingredient.model';
+import { FilterModel } from './../../../../../shared/models/filter.model';
 
 @Component({
   selector: 'ingredients-add',
@@ -14,13 +14,12 @@ import { Guid } from "guid-typescript";
   styleUrls: ['./ingredients-add.component.scss']
 })
 export class IngredientsAddComponent extends BaseComponent implements OnInit {
+  selections: IngredientModel[] = [];
   igredients: FilterModel[];
   selectedIngredientValue: string = "-1";
   selectedAmount: string = null;
   measures: FilterModel[];
   selectedMeasureValue: string = "-1";
-  results: any;
-  items: IngredientModel[] = [];
 
   constructor(
     private apisService: ApisService,
@@ -65,7 +64,28 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
   
   }
 
-  onSaveIngredient($event: FilterModel){
+  private addSelectionIntoList(): void {
+    let guid = (Guid.create())['value'];
+
+    let item = new IngredientModel(
+      guid,
+      this.getFilterNameByFilterValue(this.igredients, this.selectedIngredientValue),
+      this.selectedIngredientValue,
+      this.selectedAmount,
+      this.getFilterNameByFilterValue(this.measures, this.selectedMeasureValue),
+      this.selectedMeasureValue,
+    );
+
+    this.selections.push(item);
+  }
+
+  private resetSelection(): void {
+    this.selectedIngredientValue = "-1";
+    this.selectedAmount = null;
+    this.selectedMeasureValue = "-1";
+  }
+
+  onSaveIngredient($event: FilterModel) {
     this.setIngredients();
     this.selectedIngredientValue = $event.value;
     this.ngxSmartModalService.getModal('myModal').close();
@@ -87,41 +107,24 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
 
   onAdd(){
     if (this.selectedIngredientValue == "-1") {
-      this.toastrManager.warningToastr("Please, select ingredient", "Wait!");
+      this.toastrManager.warningToastr("Please, select ingredient first", "Wait!");
     } else if (this.isNullOrWhiteSpace(this.selectedAmount)) {
-      this.toastrManager.warningToastr("Please, type amount", "Wait!");
+      this.toastrManager.warningToastr("Please, type amount first", "Wait!");
     } else if (this.selectedMeasureValue == "-1") {
-      this.toastrManager.warningToastr("Please, select measure", "Wait!");
+      this.toastrManager.warningToastr("Please, select measure first", "Wait!");
     } else  {
-      let item = new IngredientModel(
-        this.getFilterNameByFilterValue(this.igredients, this.selectedIngredientValue),
-        this.selectedIngredientValue,
-        this.selectedAmount,
-        this.getFilterNameByFilterValue(this.measures, this.selectedMeasureValue),
-        this.selectedMeasureValue,
-      );
-      this.items.push(item);
-      console.log(this.items);
+      this.addSelectionIntoList();
+      this.resetSelection();
     }
+  }
+
+  onRemove(id: string){
+    this.selections = this.selections.filter(x => x.id != id);
   }
 
   ngOnInit() {
     this.setMeasures();
-    this.setIngredients();
-    console.log('kaliLog - ' + Guid.create());
-    // this.igredients = [
-    //   // {id:1, name: "ingredient1"},
-    // ];
-    // setTimeout(() => {
-    //   /** spinner ends after 5 seconds */
-    //   this.igredients = [
-    //     {id:1, name: "ingredient1"},
-    //     {id:2, name: "ingredient2"},
-    //     {id:3, name: "ingredient3"},
-    //     {id:4, name: "tes"},
-    //   ];
-    // }, 5000);
-    
+    this.setIngredients();    
   }
 
 }
