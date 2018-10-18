@@ -2,18 +2,18 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { BaseComponent } from './../../../../../core/BaseComponent';
-import { ApisService } from './../../../../../shared/services/apis.service';
+import { BaseComponent } from './../../../../core/BaseComponent';
+import { ApisService } from './../../../../shared/services/apis.service';
 import { Guid } from 'guid-typescript';
-import { IngredientModel } from './../../../../../shared/models/ingredient.model';
-import { FilterModel } from './../../../../../shared/models/filter.model';
+import { IngredientModel } from './../../../../shared/models/ingredient.model';
+import { FilterModel } from './../../../../shared/models/filter.model';
 
 @Component({
-  selector: 'ingredients-add',
-  templateUrl: './ingredients-add.component.html',
-  styleUrls: ['./ingredients-add.component.scss']
+  selector: 'ingredients-panel',
+  templateUrl: './ingredients-panel.component.html',
+  styleUrls: ['./ingredients-panel.component.scss']
 })
-export class IngredientsAddComponent extends BaseComponent implements OnInit {
+export class IngredientsPanelComponent extends BaseComponent implements OnInit {
   @Output() OnSelectionsChanges = new EventEmitter<IngredientModel[]>();
   selections: IngredientModel[] = []; // selected ingredient + amount + measure
   ingredients: FilterModel[];

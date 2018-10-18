@@ -5,22 +5,20 @@
       <hr>
   </div>
   
-  <div class="form-group mb-4">
+  <div class="form-group mb-5">
     <label for="name">Recipe name</label>
     <input type="text" id="name" formControlName="name" class="form-control" placeholder="your recipe name">
   </div>
  
-  <div class="form-group mb-4">
+  <div class="form-group mb-5">
     <label>Recipe image</label>
-    <image-uploader-and-cropper (onImageUploadedAndCropped)="onImageUploadedAndCropped($event)"></image-uploader-and-cropper>
+    <image-uploader-and-cropper (OnImageUploadedAndCropped)="onImageUploadedAndCropped($event)"></image-uploader-and-cropper>
   </div>
 
-  <div class="form-group  mb-4">
+  <div class="form-group  mb-5">
       <label for="name">Ingredients</label>
-      <ingredients-add (OnSelectionsChanges)="onIngredientsChanges($event)"></ingredients-add>
+      <ingredients-panel (OnSelectionsChanges)="onIngredientsChanges($event)"></ingredients-panel>
   </div>
-
-  <p>ennnd!</p>
 
 
    <!-- <div class="form-group">
@@ -47,7 +45,8 @@
     <label for="exampleFormControlTextarea1">Example textarea</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div> -->
-  <div class="form-group=">
-    <button type="submit" class="btn btn-primary mx-auto d-block">Save</button>
+  <div class="form-group">
+      <button type="button" class="btn btn-secondary mr-2">Clear</button>
+      <button type="submit" class="btn btn-primary">Save</button>
   </div>
 </form>

@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { BaseComponent } from '../../../core/BaseComponent';
 
 @Component({
-  selector: 'app-recipe-edit',
+  selector: 'recipe-edit',
   templateUrl: './recipe-edit.component.html',
   styleUrls: ['./recipe-edit.component.scss']
 })
@@ -15,7 +15,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
   loaded: boolean = false;
 
   constructor(
-      private activatedRoute: ActivatedRoute
+      private activatedRoute: ActivatedRoute,
     ){
     super();
   }
@@ -51,7 +51,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
     this.recipeFormGroup = new FormGroup({
       'name': new FormControl(this.recipe['name']),
       'recipeImage': new FormControl(null),
-      'description': new FormControl(null),
+      'ingredients': new FormControl(null),
     });
   }
 
@@ -62,6 +62,9 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
   }
 
   onIngredientsChanges($event){
+    this.recipeFormGroup.patchValue({
+      'ingredients': $event
+    });
     console.log({'kaliLog_onIngredientsChanges': $event});
   }
 

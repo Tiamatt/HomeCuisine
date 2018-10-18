@@ -7,7 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./image-uploader-and-cropper.component.scss']
 })
 export class ImageUploaderAndCropperComponent implements OnInit {
-  @Output() onImageUploadedAndCropped = new EventEmitter<string>();
+  @Output() OnImageUploadedAndCropped = new EventEmitter<string>();
   imageChangedEvent: any = '';
   croppedImage: any = '';
 
@@ -21,7 +21,7 @@ export class ImageUploaderAndCropperComponent implements OnInit {
   }
   imageCropped(image: string) {
       this.croppedImage = image;
-      this.onImageUploadedAndCropped.emit(this.croppedImage);
+      this.OnImageUploadedAndCropped.emit(this.croppedImage);
   }
   imageLoaded() {
       // show cropper

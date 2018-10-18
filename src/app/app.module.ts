@@ -27,7 +27,7 @@ import { MainComponent } from './routes/main/main.component';
 import { RecipeListComponent } from './routes/recipes/recipe-list/recipe-list.component';
 import { RecipeEditComponent } from './routes/recipes/recipe-edit/recipe-edit.component';
 import { RecipeViewComponent } from './routes/recipes/recipe-view/recipe-view.component';
-import { IngredientsAddComponent } from './routes/recipes/recipe-edit/recipe-edit-components/ingredients-add/ingredients-add.component';
+import { IngredientsPanelComponent } from './routes/recipes/recipe-edit/ingredients-panel/ingredients-panel.component';
 import { IngredientListComponent } from './routes/recipes/ingredients/ingredient-list/ingredient-list.component';
 import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient-edit/ingredient-edit.component';
 
@@ -45,7 +45,7 @@ import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient
     RecipeListComponent,
     RecipeEditComponent,
     RecipeViewComponent,
-    IngredientsAddComponent,
+    IngredientsPanelComponent,
     ImageUploaderAndCropperComponent,
     IngredientListComponent,
     IngredientEditComponent,
