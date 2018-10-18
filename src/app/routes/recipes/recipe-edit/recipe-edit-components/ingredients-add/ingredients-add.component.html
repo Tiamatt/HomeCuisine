@@ -1,55 +1,61 @@
-<div class="container  mb-3" *ngIf="onDataLoad()">
-    <div class="row">
+<!-- List of selected items -->
+<div *ngFor="let item of items">
+  <div class="mb-2 box-c pl-3">
+    <p class="float-left">{{item.ingredientName + 'bla' }}</p>
+    <i class="fa fa-times-circle float-right" aria-hidden="true"></i>
+  </div>
+  <div class="clearfix"></div> 
+</div>
+
+
+<!-- Spin till data have been loaded -->
+<loading-spinner *ngIf="!onDataLoad()"></loading-spinner>
+
+<!-- Selection box -->
+<div class="container  mb-1" *ngIf="onDataLoad()">
+  <div class="row">
       
-      <!-- Ingredient dropdown -->
-      <div class="col-12 col-sm-7 pl-0 pb-2">
-          <div class="input-group">
-              <select class="custom-select" name="selectedIngredientId" [ngModel]="selectedIngredientId" (ngModelChange)="onIngredientSelected($event)">
-                <option [value]="-1" selected>-- start typing or select ingredient --</option>
-                <option *ngFor="let igredient of igredients" [value]="igredient.value">{{igredient.name}}</option>
-              </select>
-              <div class="input-group-append">
-                <button 
-                  class="btn btn-outline-warning" 
-                  type="button" 
-                  (click)="myModal.open()"
-                >+</button>
-              </div>
-          </div>
-      </div>
-  
-      <!-- Modal dialog for creating new ingredient -->
-      <ngx-smart-modal #myModal identifier="myModal">
-        <ingredient-edit (onSaveIngredient)="onSaveIngredient($event)">
-          <button class="btn btn-outline-warning" (click)="myModal.close()">Cancel</button>
-        </ingredient-edit>
-      </ngx-smart-modal>
-  
-      <!-- Measure value textbox-->
-      <div class="col-6 col-sm-2 pl-0 pb-2">
-        <input type="text"
-        name="selectedMeasureValue"
-        [ngModel]="selectedMeasureValue"
-        (ngModelChange)="onMeasureValueChange($event)" 
-        class="form-control red-border-c"
-        placeholder="1">
-      </div>
-  
-      <!-- Measure dropdown -->
-      <div class="col-6 col-sm-3 pl-0 pb-2">
-          <div class="input-group">
-              <select class="custom-select" name="selectedMeasureId" [ngModel]="selectedMeasureId" (ngModelChange)="onMeasureSelected($event)">
-                <option [value]="-1" selected>-- select --</option>
-                <option *ngFor="let measure of measures" [value]="measure.value">{{measure.name}}</option>
-              </select>
-          </div>
-      </div>
+        <!-- Ingredient dropdown -->
+        <div class="col-12 col-sm-7 pl-0 pb-2">
+            <div class="input-group">
+                <select class="custom-select" name="selectedIngredientValue" [(ngModel)]="selectedIngredientValue">
+                  <option [value]="-1" selected>-- start typing or select ingredient --</option>
+                  <option *ngFor="let igredient of igredients" [value]="igredient.value">{{igredient.name}}</option>
+                </select>
+                <div class="input-group-append">
+                  <button 
+                    class="btn btn-outline-warning" 
+                    type="button" 
+                    (click)="myModal.open()"
+                  >+</button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Modal dialog for creating new ingredient -->
+        <ngx-smart-modal #myModal identifier="myModal">
+          <ingredient-edit (OnSave)="onSaveIngredient($event)" (OnCancel)="onCancelIngredient()"></ingredient-edit>
+        </ngx-smart-modal>
+    
+        <!-- Amount input -->
+        <div class="col-6 col-sm-2 pl-0 pb-2">
+            <input type="text"
+            name="selectedAmount"
+            [(ngModel)]="selectedAmount"
+            class="form-control red-border-c"
+            placeholder="ex: 1/4">
+        </div>
+    
+        <!-- Measure dropdown -->
+        <div class="col-6 col-sm-3 pl-0 pr-0 pb-2">
+            <div class="input-group">
+                <select class="custom-select" name="selectedMeasureValue" [(ngModel)]="selectedMeasureValue">
+                  <option [value]="-1" selected>-- select --</option>
+                  <option *ngFor="let measure of measures" [value]="measure.value">{{measure.name}}</option>
+                </select>
+            </div>
+        </div>
   
     </div>
-  </div>
-  
-  
-  <!-- Spin till data have been loaded -->
-  <loading-spinner *ngIf="!onDataLoad()"></loading-spinner>
-  
-<button type="button" class="btn btn-warning btn-sm">Add ingredient</button>
+</div>  
+<button type="button" class="btn btn-warning btn-sm full-width-c" (click)="onAdd()">Add ingredient</button>

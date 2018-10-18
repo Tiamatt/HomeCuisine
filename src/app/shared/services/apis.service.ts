@@ -23,11 +23,11 @@ export class ApisService extends BaseService{
 
     // BEGIN: CRUD -> READ -> GET LIST (returns list of items)
     
-    public getFilter(entityName:string): Promise<FilterModel[]> {
+    public getFilter(entityName:string): Promise<FilterModel[]> | null{
         // development error
         if (this.isNullOrWhiteSpace(entityName)) {
             this.toastrManager.errorToastr("EntityName can't be empty. Called from ApisService -> getFilter()", "Dev error!");
-            return new Promise(null);
+            return null;
         }
 
         let apiUrl = this.baseApiUrl + "/filter/" + entityName;
@@ -50,7 +50,7 @@ export class ApisService extends BaseService{
         }
 
         let apiUrl = this.baseApiUrl + "/" + entityName + "-unique/" + value;
-            return this.httpClient.get<boolean>(apiUrl).toPromise();
+        return this.httpClient.get<boolean>(apiUrl).toPromise();
     }
 
     // END: CRUD -> READ -> CHECK (returns true/false)

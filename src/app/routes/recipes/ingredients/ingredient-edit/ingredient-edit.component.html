@@ -1,4 +1,4 @@
-<form [formGroup]="ingredientFormGroup" (ngSubmit)="onSubmit()">
+<form [formGroup]="ingredientFormGroup" (ngSubmit)="onSave()">
   
   <!-- HEADER -->
   <div class="form-group">
@@ -25,7 +25,7 @@
 
   <!-- Cancel and Save BUTTONS -->
   <div class="form-group float-right">
-    <ng-content></ng-content> <!-- cancel button -->
+    <button type="button" class="btn btn-outline-warning" (click)="onCancel()">Cancel</button>
     <button type="submit" class="btn btn-primary m-2" [disabled]="!ingredientFormGroup.valid">Save</button>
   </div>
 

@@ -8,6 +8,7 @@ import { ImageCropperModule } from 'ngx-image-cropper'; // npm package for image
 import { NgxSpinnerModule } from 'ngx-spinner'; // npm package for loading
 import { ToastrModule } from 'ng6-toastr-notifications'; // npm package for toaster message
 import { NgxSmartModalModule } from 'ngx-smart-modal'; // npm package for modal dialog
+import { AngularFontAwesomeModule } from 'angular-font-awesome'; // npm package for icons
 // services
 import { ApisService } from './shared/services/apis.service';
 // directives
@@ -62,6 +63,7 @@ import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient
     NgxSpinnerModule,
     ToastrModule.forRoot(),
     NgxSmartModalModule.forRoot(),
+    AngularFontAwesomeModule,
   ],
   providers: [
     ApisService,

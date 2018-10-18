@@ -13,9 +13,9 @@ import { FilterModel } from './../../../../shared/models/filter.model';
   styleUrls: ['./ingredient-edit.component.scss']
 })
 
-// Add new ingredient (by name)
 export class IngredientEditComponent extends BaseComponent implements OnInit {
-  @Output() onSaveIngredient = new EventEmitter<FilterModel>();
+  @Output() OnSave = new EventEmitter<FilterModel>();
+  @Output() OnCancel = new EventEmitter<void>(); 
   ingredientFormGroup: FormGroup;
 
   constructor(
@@ -25,7 +25,7 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
     super();
    }
 
-  private setIngredientFormGroup() {
+  private setIngredientFormGroup(): void {
     this.ingredientFormGroup = new FormGroup({
       'name': new FormControl(
         null, // default value
@@ -35,19 +35,23 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSave(): void {
     this.apisService.saveIngredient(this.ingredientFormGroup.value).subscribe(
       res => {
         this.toastrManager.successToastr("Ingredient have been saved successfully", "Saved");
-        this.onSaveIngredient.emit(new FilterModel(res['name'], res['id'], true));
+        this.OnSave.emit(new FilterModel(res['name'], res['id'], true));
         this.ingredientFormGroup.reset();
       },
       err => {
         this.toastrManager.errorToastr("Couldn't save new ingredient", "Ooops!");
-        this.onSaveIngredient.emit(null);
+        this.OnSave.emit(null);
         this.apisService.saveError(err);
       }
     );
+  }
+
+  onCancel(): void {
+    this.OnCancel.emit();
   }
 
   ngOnInit() {

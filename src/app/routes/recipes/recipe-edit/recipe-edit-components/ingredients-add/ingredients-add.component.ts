@@ -1,3 +1,5 @@
+import { IngredientModel } from './../../../../../shared/models/ingredient.model';
+import { FilterModel } from './../../../../../shared/models/filter.model';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrManager } from 'ng6-toastr-notifications';
@@ -11,13 +13,13 @@ import { ApisService } from './../../../../../shared/services/apis.service';
   styleUrls: ['./ingredients-add.component.scss']
 })
 export class IngredientsAddComponent extends BaseComponent implements OnInit {
-
-  igredients: Array<any>;
-  selectedIngredientId: number = -1;
-  measures: Array<any>;
-  selectedMeasureId: number = -1;
-  selectedMeasureValue: number = null;
+  igredients: FilterModel[];
+  selectedIngredientValue: string = "-1";
+  selectedAmount: string = null;
+  measures: FilterModel[];
+  selectedMeasureValue: string = "-1";
   results: any;
+  items: IngredientModel[] = [];
 
   constructor(
     private apisService: ApisService,
@@ -28,9 +30,12 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
       super();
     }
 
-  private setMeasures() {
+  private setMeasures(): void {
     this.apisService.getFilter('measure').then(
-      res => {
+      (res : FilterModel[]) => {
+        if(res == null) {
+          throw new Error('Kali - blabla error'); // kali
+        }
         this.measures = res;
       }
     )
@@ -41,9 +46,13 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
       }
     );
   }
-  private setIngredients() {
+
+  private setIngredients(): void {
     this.apisService.getFilter('ingredient').then(
-      res => {
+      (res : FilterModel[]) => {
+        if(res == null) {
+          throw new Error('Kali - blabla error'); // kali
+        }
         this.igredients = res;
       })
       .catch(
@@ -55,23 +64,19 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
   
   }
 
-  onSaveIngredient($event){
-    console.log({'kaliLog_onSaveIngredient': $event});
+  private getFilterNameByFilterValue(filterArray: FilterModel[], selectedValue: string) {
+    let result = filterArray.find(x => x.value == selectedValue);
+    return result.name;
+  }
+
+  onSaveIngredient($event: FilterModel){
+    this.setIngredients();
+    this.selectedIngredientValue = $event.value;
     this.ngxSmartModalService.getModal('myModal').close();
   }
 
-  onIngredientSelected(selectedIngredientId){
-    console.log({
-      'kaliLog_1': selectedIngredientId,
-    });
-  }
-  onMeasureValueChange(selectedMeasureValue) {
-    console.log({'kaliLog_2': selectedMeasureValue});
-  }
-  onMeasureSelected(selectedMeasureId){
-    console.log({
-      'kaliLog_3': selectedMeasureId,
-    });
+  onCancelIngredient() {
+    this.ngxSmartModalService.getModal('myModal').close();
   }
 
   onDataLoad() {
@@ -81,6 +86,26 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
     } else {
       this.spinner.show();
       return false;
+    }
+  }
+
+  onAdd(){
+    if (this.selectedIngredientValue == "-1") {
+      this.toastrManager.warningToastr("Please, select ingredient", "Wait!");
+    } else if (this.isNullOrWhiteSpace(this.selectedAmount)) {
+      this.toastrManager.warningToastr("Please, type amount", "Wait!");
+    } else if (this.selectedMeasureValue == "-1") {
+      this.toastrManager.warningToastr("Please, select measure", "Wait!");
+    } else  {
+      let d = new IngredientModel(
+        this.getFilterNameByFilterValue(this.igredients, this.selectedIngredientValue),
+        this.selectedIngredientValue,
+        this.selectedAmount,
+        this.getFilterNameByFilterValue(this.measures, this.selectedMeasureValue),
+        this.selectedMeasureValue,
+      );
+      this.items.push(d);
+      console.log(this.items);
     }
   }
 
