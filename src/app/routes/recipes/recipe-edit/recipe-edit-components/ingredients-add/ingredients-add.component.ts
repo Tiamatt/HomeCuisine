@@ -64,11 +64,6 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
   
   }
 
-  private getFilterNameByFilterValue(filterArray: FilterModel[], selectedValue: string) {
-    let result = filterArray.find(x => x.value == selectedValue);
-    return result.name;
-  }
-
   onSaveIngredient($event: FilterModel){
     this.setIngredients();
     this.selectedIngredientValue = $event.value;
