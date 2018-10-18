@@ -15,7 +15,7 @@ import { FilterModel } from './../../../../../shared/models/filter.model';
 })
 export class IngredientsAddComponent extends BaseComponent implements OnInit {
   selections: IngredientModel[] = [];
-  igredients: FilterModel[];
+  ingredients: FilterModel[];
   selectedIngredientValue: string = "-1";
   selectedAmount: string = null;
   measures: FilterModel[];
@@ -47,13 +47,19 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
     );
   }
 
+  private changeIngredientFlag() {
+    let selectedIngredientValues = this.selections.map(x => x.ingredientValue);
+    this.ingredients.forEach(x => x.selected = (selectedIngredientValues.indexOf(x.value) === -1) );
+  }
+
   private setIngredients(): void {
     this.apisService.getFilter('ingredient').then(
       (res : FilterModel[]) => {
         if(res == null) {
           throw new Error('Kali - blabla error'); // kali
         }
-        this.igredients = res;
+        this.ingredients = res;
+        this.changeIngredientFlag();
       })
       .catch(
         err => {
@@ -69,7 +75,7 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
 
     let item = new IngredientModel(
       guid,
-      this.getFilterNameByFilterValue(this.igredients, this.selectedIngredientValue),
+      this.getFilterNameByFilterValue(this.ingredients, this.selectedIngredientValue),
       this.selectedIngredientValue,
       this.selectedAmount,
       this.getFilterNameByFilterValue(this.measures, this.selectedMeasureValue),
@@ -96,7 +102,7 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
   }
 
   onDataLoad() {
-    if(this.measures && this.igredients) {
+    if(this.measures && this.ingredients) {
       this.spinner.hide();
       return true;
     } else {
@@ -115,11 +121,13 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
     } else  {
       this.addSelectionIntoList();
       this.resetSelection();
+      this.changeIngredientFlag();
     }
   }
 
   onRemove(id: string){
     this.selections = this.selections.filter(x => x.id != id);
+    this.changeIngredientFlag();
   }
 
   ngOnInit() {

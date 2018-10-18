@@ -20,7 +20,9 @@
             <div class="input-group">
                 <select class="custom-select" name="selectedIngredientValue" [(ngModel)]="selectedIngredientValue">
                   <option [value]="-1" selected>-- start typing or select ingredient --</option>
-                  <option *ngFor="let igredient of igredients" [value]="igredient.value">{{igredient.name}}</option>
+                  <ng-container *ngFor="let ingredient of ingredients">
+                    <option *ngIf="ingredient.selected" [value]="ingredient.value">{{ingredient.name}}</option>
+                  </ng-container>
                 </select>
                 <div class="input-group-append">
                   <button 

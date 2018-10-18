@@ -5,6 +5,6 @@ export class IngredientModel{
         public ingredientValue: string,
         public amount: string,
         public measureName: string,
-        public measureAmount: string,
+        public measureValue: string,
     ){}
 }
