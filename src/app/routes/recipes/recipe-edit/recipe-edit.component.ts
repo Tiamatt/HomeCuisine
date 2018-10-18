@@ -61,6 +61,9 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
     });
   }
 
+  onIngredientsChanges($event){
+    console.log({'kaliLog_onIngredientsChanges': $event});
+  }
 
   onSubmit() {
     console.log({'kaliLog': this.recipeFormGroup.value});

@@ -39,7 +39,7 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
     this.apisService.saveIngredient(this.ingredientFormGroup.value).subscribe(
       res => {
         this.toastrManager.successToastr("Ingredient have been saved successfully", "Saved");
-        this.OnSave.emit(new FilterModel(res['name'], res['id'], true));
+        this.OnSave.emit(new FilterModel(res['name'], res['id'].toString(), true));
         this.ingredientFormGroup.reset();
       },
       err => {

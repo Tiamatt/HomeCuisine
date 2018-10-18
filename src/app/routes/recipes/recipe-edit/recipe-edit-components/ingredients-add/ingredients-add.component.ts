@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { NgxSmartModalService } from 'ngx-smart-modal';
@@ -14,7 +14,8 @@ import { FilterModel } from './../../../../../shared/models/filter.model';
   styleUrls: ['./ingredients-add.component.scss']
 })
 export class IngredientsAddComponent extends BaseComponent implements OnInit {
-  selections: IngredientModel[] = [];
+  @Output() OnSelectionsChanges = new EventEmitter<IngredientModel[]>();
+  selections: IngredientModel[] = []; // selected ingredient + amount + measure
   ingredients: FilterModel[];
   selectedIngredientValue: string = "-1";
   selectedAmount: string = null;
@@ -77,12 +78,18 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
       guid,
       this.getFilterNameByFilterValue(this.ingredients, this.selectedIngredientValue),
       this.selectedIngredientValue,
-      this.selectedAmount,
+      this.selectedAmount.trim(),
       this.getFilterNameByFilterValue(this.measures, this.selectedMeasureValue),
       this.selectedMeasureValue,
     );
 
     this.selections.push(item);
+    this.OnSelectionsChanges.emit(this.selections);
+  }
+
+  private removeSelectionFromList(id: string): void {
+    this.selections = this.selections.filter(x => x.id != id);
+    this.OnSelectionsChanges.emit(this.selections);
   }
 
   private resetSelection(): void {
@@ -92,8 +99,8 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
   }
 
   onSaveIngredient($event: FilterModel) {
-    this.setIngredients();
     this.selectedIngredientValue = $event.value;
+    this.setIngredients();
     this.ngxSmartModalService.getModal('myModal').close();
   }
 
@@ -126,7 +133,7 @@ export class IngredientsAddComponent extends BaseComponent implements OnInit {
   }
 
   onRemove(id: string){
-    this.selections = this.selections.filter(x => x.id != id);
+    this.removeSelectionFromList(id);
     this.changeIngredientFlag();
   }
 
