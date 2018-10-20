@@ -51,7 +51,7 @@ export class ApisService extends BaseService{
 
     // BEGIN: CRUD -> READ -> CHECK (returns true/false)
 
-    public checkUniqueness(entityName:string, value: string): Promise<boolean> | null {
+    public checkUniqueness(entityName:string, value: string, excludedEntityId: number): Promise<boolean> | null {
         // development error
         if (this.isNullOrWhiteSpace(entityName) || this.isNullOrWhiteSpace(value)) {
             let errorMessage = (this.isNullOrWhiteSpace(entityName)) 
@@ -60,8 +60,9 @@ export class ApisService extends BaseService{
             this.toastrManager.errorToastr(errorMessage, "Dev error!");
             return new Promise(null);
         }
+        // kali - validate excludedEntityId
 
-        let apiUrl = this.baseApiUrl + "/" + entityName + "-unique/" + value;
+        let apiUrl = this.baseApiUrl + "/" + entityName + "-unique/" + value + "/" + excludedEntityId;
         return this.httpClient.get<boolean>(apiUrl).toPromise();
     }
 

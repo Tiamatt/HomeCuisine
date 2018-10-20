@@ -60,11 +60,12 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
   }
 
   private setRecipeFormGroup() : void {
+    let initialRecipeId = (this.initialRecipe.id)? +this.initialRecipe.id:0;
     this.recipeFormGroup = new FormGroup({
       'name': new FormControl(
         this.initialRecipe.name, // default value
         [NullOrWhiteSpaceValidatorDirectiveFn()], // array of sync validators
-        [UniqueInDbValidatorDirectiveFn(this.apisService, 'recipe')] // array of async validators
+        [UniqueInDbValidatorDirectiveFn(this.apisService, 'recipe', initialRecipeId)] // array of async validators
         ),
       'frontImage': new FormControl(
         this.initialRecipe.frontImage, 

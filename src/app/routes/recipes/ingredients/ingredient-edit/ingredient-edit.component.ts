@@ -30,7 +30,7 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
       'name': new FormControl(
         null, // default value
         [NullOrWhiteSpaceValidatorDirectiveFn()], // array of sync validators
-        [UniqueInDbValidatorDirectiveFn(this.apisService, 'ingredient')] // array of async validators
+        [UniqueInDbValidatorDirectiveFn(this.apisService, 'ingredient', 0)] // array of async validators
       ),
     });
   }
