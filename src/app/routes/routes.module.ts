@@ -10,9 +10,9 @@ import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component
 const routes: Routes = [
     { path: '', component: MainComponent },
     { path: 'recipes', component: RecipeListComponent },
-    { path: 'recipes/new', component: RecipeEditComponent },
-    { path: 'recipes/:id/edit', component: RecipeEditComponent }, // instead edit partially
-    { path: 'recipes/:id/view', component: RecipeViewComponent },
+    { path: 'recipe/new', component: RecipeEditComponent },
+    { path: 'recipe/:id/edit', component: RecipeEditComponent }, // instead edit partially
+    { path: 'recipe/:id/view', component: RecipeViewComponent },
     { path: 'not-found', component: MainComponent },
     { path: '**', component: MainComponent }
 ]

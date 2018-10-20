@@ -19,8 +19,8 @@ export class ImageUploaderAndCropperComponent implements OnInit {
   fileChangeEvent(event: any): void {
       this.imageChangedEvent = event;
   }
-  imageCropped(image: string) {
-      this.croppedImage = image;
+  imageCroppedBase64(imageBase64: string) {
+      this.croppedImage = imageBase64;
       this.OnImageUploadedAndCropped.emit(this.croppedImage);
   }
   imageLoaded() {

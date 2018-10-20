@@ -3,6 +3,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { BaseService } from '../../core/BaseService';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { RecipeModel } from '../models/recipe.model';
+import { Observable } from 'rxjs';
 
 @Injectable() //need to inject build-in HttpClient service
 
@@ -21,7 +23,7 @@ export class ApisService extends BaseService{
         super();
     }
 
-    // BEGIN: CRUD -> READ -> GET LIST (returns list of items)
+    // BEGIN: CRUD -> READ -> GET LIST OR SINGLE ITEM
     
     public getFilter(entityName:string): Promise<FilterModel[]> | null{
         // development error
@@ -34,7 +36,17 @@ export class ApisService extends BaseService{
         return this.httpClient.get<FilterModel[]>(apiUrl).toPromise();
     }
 
-    // END: CRUD -> READ -> GET LIST (returns list of items)
+    public getRecipe(recipeId: number): Observable<RecipeModel> | null {
+        if (recipeId < 1) {
+            this.toastrManager.errorToastr("RecipeId can't be less than zero. Called from ApisService -> GetRecipe()", "Dev error!");
+            return null;
+        }
+
+        let apiUrl = this.baseApiUrl + "/recipe/" + recipeId;
+        return this.httpClient.get<RecipeModel>(apiUrl);
+    }
+
+    // END: CRUD -> READ -> GET LIST OR SINGLE ITEM
 
 
     // BEGIN: CRUD -> READ -> CHECK (returns true/false)
@@ -61,6 +73,11 @@ export class ApisService extends BaseService{
     public saveIngredient(ingredientForm: any) {
         let apiUrl = this.baseApiUrl + "/ingredient";
         return this.httpClient.post(apiUrl, ingredientForm);
+    }
+
+    public saveRecipe(recipeForm: any) {
+        let apiUrl = this.baseApiUrl + "/recipe";
+        return this.httpClient.post(apiUrl, recipeForm);
     }
 
     public saveError(httpErrorResponse: HttpErrorResponse) {

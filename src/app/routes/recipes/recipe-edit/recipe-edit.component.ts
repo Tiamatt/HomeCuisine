@@ -1,7 +1,9 @@
+import { ApisService } from './../../../shared/services/apis.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BaseComponent } from '../../../core/BaseComponent';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'recipe-edit',
@@ -16,6 +18,9 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
 
   constructor(
       private activatedRoute: ActivatedRoute,
+      private router: Router,
+      private toastrManager: ToastrManager,
+      private apisService: ApisService,
     ){
     super();
   }
@@ -36,7 +41,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
     return new Promise<void>((resolve, reject) => {
       if(this.recipeId === null) {
         this.recipe = { // kali - add more
-          name: 'test_recipeName', 
+          name: '', 
         }
         resolve();
       } else {
@@ -50,14 +55,14 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
   private setRecipeForm() { // kali - rename
     this.recipeFormGroup = new FormGroup({
       'name': new FormControl(this.recipe['name']),
-      'recipeImage': new FormControl(null),
+      'frontImage': new FormControl(null),
       'ingredients': new FormControl(null),
     });
   }
 
   onImageUploadedAndCropped(event){
     this.recipeFormGroup.patchValue({
-        'recipeImage': event
+        'frontImage': event
     });
   }
 
@@ -65,14 +70,26 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
     this.recipeFormGroup.patchValue({
       'ingredients': $event
     });
-    console.log({'kaliLog_onIngredientsChanges': $event});
   }
 
-  onSubmit() {
-    console.log({'kaliLog': this.recipeFormGroup.value});
+  onSave(): void {
+    this.apisService.saveRecipe(this.recipeFormGroup.value).subscribe(
+      (newRecipeId: number) => {
+        this.toastrManager.successToastr("Your recipe have been saved successfully", "Saved");
+        this.router.navigate(['/recipe/' + newRecipeId + '/view']);
+      },
+      err => {
+        this.toastrManager.errorToastr("Error occured during saving the recipe", "Ooops!");
+        this.apisService.saveError(err);
+      }
+    );
   }
 
-   ngOnInit() {
+  onClear() {
+    this.recipeFormGroup.reset();
+  }
+
+  ngOnInit() {
      // 1. set editRecipeId. If null, then "new"
     this.setRecipeId().then(  
       () => {

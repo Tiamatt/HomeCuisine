@@ -1,3 +1,14 @@
-<p>
-  recipe-view works!
-</p>
+<div class="form-c" *ngIf="recipe">
+  
+  <div class="form-group">
+      <h2>{{recipe.name}}</h2>
+      <hr>
+  </div>
+
+
+  <img [src]="recipe.frontImage">
+
+
+
+
+</div>

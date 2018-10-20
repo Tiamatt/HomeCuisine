@@ -1,3 +1,8 @@
+import { ToastrManager } from 'ng6-toastr-notifications';
+import { ApisService } from './../../../shared/services/apis.service';
+import { BaseComponent } from './../../../core/BaseComponent';
+import { ActivatedRoute, Params } from '@angular/router';
+import { RecipeModel } from './../../../shared/models/recipe.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,11 +10,39 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './recipe-view.component.html',
   styleUrls: ['./recipe-view.component.scss']
 })
-export class RecipeViewComponent implements OnInit {
+export class RecipeViewComponent extends BaseComponent implements OnInit {
+  recipe: RecipeModel;
 
-  constructor() { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private apisService: ApisService,
+    private toastrManager: ToastrManager,
+  ) { 
+    super();
+  }
+
+  setRecipe() {
+    this.activatedRoute.params.subscribe(
+      (params: Params) => {
+        let recipeId = (this.isStringPositiveNumber(params['id'])) ? params['id'] : null;
+        this.apisService.getRecipe(recipeId).subscribe(
+          (res: RecipeModel) => {
+            this.recipe = res;
+          },
+          err => {
+            this.toastrManager.errorToastr("Error occure while calling recipe", "Ooops!");
+            this.apisService.saveError(err);
+          });
+      },
+      err => {
+        // developer's error
+        this.toastrManager.errorToastr("Couldn't get recipe id from activated route", "Ooops!");
+        this.apisService.saveError(err);
+      });
+  }
 
   ngOnInit() {
+    this.setRecipe();
   }
 
 }
