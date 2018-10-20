@@ -1,14 +1,27 @@
 <div class="form-c" *ngIf="recipe">
   
-  <div class="form-group">
-      <h2>{{recipe.name}}</h2>
+  <div class="form-group  mb-5">
+      <h1>{{recipe.name}}</h1>
       <hr>
   </div>
 
 
-  <img [src]="recipe.frontImage">
+  <div class="m-5">
+    <img [src]="recipe.frontImage" alt="recipe image">
+  </div>
 
-
+  <div class="form-group mb-5">
+    <label>Ingredients</label>
+    <div *ngFor="let ingredient of recipe.ingredients">
+      <div class="mb-2 box-c">
+        <!-- <i class="fa fa-check-circle float-left" aria-hidden="true"></i> -->
+        <i class="fa fa-plus-circle float-left" aria-hidden="true"></i> 
+        <p class="float-left">{{ingredient.ingredientName + ' - ' + ingredient.amount  + ' ' + ingredient.measureName }}</p>
+      </div>
+      <div class="clearfix"></div> 
+    </div>
+    
+  </div>
 
 
 </div>
