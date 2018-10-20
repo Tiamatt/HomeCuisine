@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { NgxSmartModalService } from 'ngx-smart-modal';
@@ -14,8 +14,8 @@ import { FilterModel } from './../../../../shared/models/filter.model';
   styleUrls: ['./ingredients-panel.component.scss']
 })
 export class IngredientsPanelComponent extends BaseComponent implements OnInit {
+  @Input() selections: IngredientModel[] = []; // selected ingredient + amount + measure
   @Output() OnSelectionsChanges = new EventEmitter<IngredientModel[]>();
-  selections: IngredientModel[] = []; // selected ingredient + amount + measure
   ingredients: FilterModel[];
   selectedIngredientValue: string = "-1";
   selectedAmount: string = null;
@@ -49,7 +49,7 @@ export class IngredientsPanelComponent extends BaseComponent implements OnInit {
   }
 
   private changeIngredientFlag() {
-    let selectedIngredientValues = this.selections.map(x => x.ingredientValue);
+    let selectedIngredientValues = (this.selections) ? this.selections.map(x => x.ingredientValue) : [];
     this.ingredients.forEach(x => x.selected = (selectedIngredientValues.indexOf(x.value) === -1) );
   }
 
