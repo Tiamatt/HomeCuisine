@@ -1,10 +1,11 @@
+import { ImageUploaderAndCropperComponent } from './../../../shared/components/image-uploader-and-cropper/image-uploader-and-cropper.component';
 import { IngredientModel } from './../../../shared/models/ingredient.model';
 import { UniqueInDbValidatorDirectiveFn } from 'src/app/shared/directives/unique-in-db-validator.directive';
 import { NullOrWhiteSpaceValidatorDirectiveFn } from 'src/app/shared/directives/null-or-white-space-validator.directive';
 import { RecipeModel } from './../../../shared/models/recipe.model';
 import { ApisService } from './../../../shared/services/apis.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BaseComponent } from '../../../core/BaseComponent';
 import { ToastrManager } from 'ng6-toastr-notifications';
@@ -16,8 +17,10 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 })
 export class RecipeEditComponent extends BaseComponent implements OnInit {
   initialRecipe: RecipeModel;
+  isInitialFrontImage: boolean;
   recipeFormGroup: FormGroup;
   isInvalid: boolean = false;
+  @ViewChild(ImageUploaderAndCropperComponent) imageUploaderAndCropperComponent: ImageUploaderAndCropperComponent;
 
   constructor(
       private activatedRoute: ActivatedRoute,
@@ -36,6 +39,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
             this.apisService.getRecipe(recipeId).subscribe(
               (res: RecipeModel) => {
                 this.initialRecipe = res;
+                this.isInitialFrontImage = true;
                 this.setRecipeFormGroup();
               },
               err => {
@@ -44,6 +48,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
               });
         } else {
             this.initialRecipe = new RecipeModel(null, null, [], null);
+            this.isInitialFrontImage = false;
             this.setRecipeFormGroup();
         }
       },
@@ -74,6 +79,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
 
   onImageUploadedAndCropped(event: string){
     this.recipeFormGroup.patchValue({'frontImage': event});
+    this.isInitialFrontImage = false;
   }
 
   onIngredientsChanges(event: IngredientModel[]){
@@ -105,7 +111,9 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
   }
 
   onClearOrCancel() {
+    this.isInitialFrontImage = true;
     this.setRecipeFormGroup();
+    this.imageUploaderAndCropperComponent.onReset();
   }
 
   ngOnInit() {

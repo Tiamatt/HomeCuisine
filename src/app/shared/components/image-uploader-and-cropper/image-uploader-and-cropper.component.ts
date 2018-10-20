@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
 
 
 @Component({
@@ -8,8 +8,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ImageUploaderAndCropperComponent implements OnInit {
   @Output() OnImageUploadedAndCropped = new EventEmitter<string>();
+  
   imageChangedEvent: any = '';
   croppedImage: any = '';
+  @ViewChild('imageFile') imageFile: ElementRef;
 
   constructor() { }
 
@@ -28,6 +30,12 @@ export class ImageUploaderAndCropperComponent implements OnInit {
   }
   loadImageFailed() {
       // show message
+  }
+
+  // must be accessable from parent component
+  onReset() {
+      this.imageChangedEvent = '';
+      this.imageFile.nativeElement.value = '';
   }
 
 }

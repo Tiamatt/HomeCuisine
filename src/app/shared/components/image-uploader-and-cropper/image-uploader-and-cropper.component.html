@@ -10,7 +10,7 @@
 ></image-cropper>
 
 <div class="btn-warning clearfix">
-  <input type="file" accept="image/*" (change)="fileChangeEvent($event)" />
+  <input type="file" #imageFile accept="image/*" (change)="fileChangeEvent($event)" />
 </div>
 
 <!-- <div class="clearfix" *ngIf="croppedImage">

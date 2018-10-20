@@ -23,6 +23,7 @@
  
   <div class="form-group mb-5">
     <label>Recipe image * </label>
+    <img *ngIf="isInitialFrontImage" [src]="initialRecipe.frontImage" alt="recipe image" class="img-thumbnail d-block mb-3">
     <image-uploader-and-cropper (OnImageUploadedAndCropped)="onImageUploadedAndCropped($event)"></image-uploader-and-cropper>
     <div *ngIf="isInvalid && recipeFormGroup.get('frontImage').invalid" class="alert alert-danger p-1 mt-2"> 
         * Image required
