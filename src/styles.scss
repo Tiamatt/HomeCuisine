@@ -1,9 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-$color-dark-grey-c: #343A40;
-$color-light-grey-c: #DCDCDC;
-$color-orange-c: rgba(228,155,36,1);
+$color-dark-grey-c: #1e2017;
+$color-light-grey-c: #dbdbdb;
+$color-orange-c: #ffc107;
 $color-light-green-c: #BFC698; /*for body background: #a5ad7a*/
 $color-dark-green-c:#373f1b;
+
+$font-family-lobster: 'Lobster', cursive;
+
 
 /* -- BEGIN: FOR ngx-smart-modal npm package --  */
 $color-overlay: rgba(0, 0, 0, .7);

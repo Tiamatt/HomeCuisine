@@ -4,18 +4,23 @@ $header-height: 24px;
 
 .navbar{
     border-bottom: 3px solid $color-orange-c;
+    background: $color-dark-grey-c;
 }
 .text-link-c{
     font-size: 1.1rem;
-    color: rgba(228,155,36,1) !important;
+    color: $color-orange-c !important;
     font-weight: 600;
 }
 .text-link-c:hover{
-    color: rgba(206,214,212,1) !important;
+    color: $color-orange-c !important;
 }
 .logo-c{
     padding:0;
+    font-family: $font-family-lobster;
+    color: $color-orange-c;
+    font-size: 1.5em;
 }
+
 .logo-img-c {
     height:  $header-height;
     width: 150px;
