@@ -6,5 +6,6 @@ export class IngredientModel{
         public amount: string,
         public measureName: string,
         public measureValue: string,
+        public flag?: boolean,
     ){}
 }

@@ -14,9 +14,9 @@
   <div class="form-group mb-5">
     <label>Ingredients</label>
     <div *ngFor="let ingredient of recipe.ingredients">
-      <div class="mb-2 box-c">
+      <div class="mb-2 box-c" (click)="onCheckIngredient(ingredient)" [ngStyle]="{'color': (ingredient.flag) ? 'orange' : 'black'}">
         <!-- <i class="fa fa-check-circle float-left" aria-hidden="true"></i> -->
-        <i class="fa fa-plus-circle float-left" aria-hidden="true"></i> 
+        <i class="fa fa-check-circle-o float-left" aria-hidden="true"></i> 
         <p class="float-left">{{ingredient.ingredientName + ' - ' + ingredient.amount  + ' ' + ingredient.measureName }}</p>
       </div>
       <div class="clearfix"></div> 

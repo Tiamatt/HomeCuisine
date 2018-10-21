@@ -4,6 +4,7 @@ import { BaseComponent } from './../../../core/BaseComponent';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeModel } from './../../../shared/models/recipe.model';
 import { Component, OnInit } from '@angular/core';
+import { IngredientModel } from 'src/app/shared/models/ingredient.model';
 
 @Component({
   selector: 'app-recipe-view',
@@ -41,6 +42,10 @@ export class RecipeViewComponent extends BaseComponent implements OnInit {
         this.toastrManager.errorToastr("Couldn't get recipe id from activated route", "Ooops!");
         this.apisService.saveError(err);
       });
+  }
+
+  onCheckIngredient(ingredient: IngredientModel) {
+    ingredient.flag = !ingredient.flag;
   }
 
   onRedirectToEditPage(){
