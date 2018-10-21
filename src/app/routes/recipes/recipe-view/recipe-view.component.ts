@@ -52,6 +52,10 @@ export class RecipeViewComponent extends BaseComponent implements OnInit {
     this.router.navigate(['/recipe/' + this.recipe.id + '/edit']);
   }
 
+  onRedirectToCreatePage(){
+    this.router.navigate(['/recipe/new']);
+  }
+
   ngOnInit() {
     this.setRecipe();
   }
