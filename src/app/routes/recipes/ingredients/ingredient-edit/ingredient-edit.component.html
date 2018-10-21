@@ -13,7 +13,13 @@
     <div *ngIf="ingredientFormGroup.get('name').touched && ingredientFormGroup.get('name').invalid">
       <p *ngIf="ingredientFormGroup.get('name').errors['nullOrWhiteSpace']" class="alert alert-danger p-1 mt-2"> 
           * Name required
-      </p>	
+      </p>
+      <p *ngIf="ingredientFormGroup.get('name').errors['minlength']" class="alert alert-danger p-1 mt-2"> 
+          * Name must contain at least 2 characters 
+      </p>
+      <p *ngIf="ingredientFormGroup.get('name').errors['maxlength']" class="alert alert-danger p-1 mt-2"> 
+          * Name can contain max 128 characters 
+      </p>
       <p *ngIf="ingredientFormGroup.get('name').errors['notUniqueInDb']" class="alert alert-danger p-1 mt-2"> 
           * Name already exists
       </p>

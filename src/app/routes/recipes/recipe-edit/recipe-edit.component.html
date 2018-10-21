@@ -11,6 +11,12 @@
     <div *ngIf="isInvalid && recipeFormGroup.get('name').invalid">
         <p *ngIf="recipeFormGroup.get('name').errors['nullOrWhiteSpace']" class="alert alert-danger p-1 mt-2"> 
             * Name required
+        </p>
+        <p *ngIf="recipeFormGroup.get('name').errors['minlength']" class="alert alert-danger p-1 mt-2"> 
+            * Name must contain at least 3 characters 
+        </p>
+        <p *ngIf="recipeFormGroup.get('name').errors['maxlength']" class="alert alert-danger p-1 mt-2"> 
+            * Name can contain max 128 characters 
         </p>	
         <p *ngIf="recipeFormGroup.get('name').errors['notUniqueInDb']" class="alert alert-danger p-1 mt-2"> 
             * Name already exists
@@ -48,6 +54,6 @@
 
   <div class="form-group">
       <button type="button" class="btn btn-secondary mr-2" (click)="onClearOrCancel()">{{ (initialRecipe.id) ? 'Cancel' : 'Clear' }}</button>
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">{{ (initialRecipe.id) ? 'Update' : 'Create' }}</button>
   </div>
 </form>

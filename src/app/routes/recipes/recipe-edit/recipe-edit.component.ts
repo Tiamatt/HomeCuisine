@@ -64,7 +64,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
     this.recipeFormGroup = new FormGroup({
       'name': new FormControl(
         this.initialRecipe.name, // default value
-        [NullOrWhiteSpaceValidatorDirectiveFn()], // array of sync validators
+        [Validators.minLength(3), Validators.maxLength(128), NullOrWhiteSpaceValidatorDirectiveFn()], // array of sync validators
         [UniqueInDbValidatorDirectiveFn(this.apisService, 'recipe', initialRecipeId)] // array of async validators
         ),
       'frontImage': new FormControl(
@@ -88,26 +88,36 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
   }
 
   onSave(): void {
-    console.log({
-      'kaliLog_onSave': 'bla',
-      'initialRecipe': this.initialRecipe,
-      'form': this.recipeFormGroup.value
-    });
     this.isInvalid = !this.recipeFormGroup.valid;
+    console.log(this.recipeFormGroup);
     if(this.isInvalid) {
       this.toastrManager.warningToastr("Validation failed. Please, read text marked red.", "Warning!");
     }
     else {
-      this.apisService.saveRecipe(this.recipeFormGroup.value).subscribe(
-        (newRecipeId: number) => {
-          this.toastrManager.successToastr("Your recipe have been saved successfully", "Saved");
-          this.router.navigate(['/recipe/' + newRecipeId + '/view']);
-        },
-        err => {
-          this.toastrManager.errorToastr("Error occured during saving the recipe", "Ooops!");
-          this.apisService.saveError(err);
-        }
-      );
+      if(this.initialRecipe.id) {
+        this.apisService.updateRecipe(this.initialRecipe.id, this.recipeFormGroup.value).subscribe(
+          (updatedRecipeId: number) => {
+            this.toastrManager.successToastr("Your recipe have been updated!", "Updated");
+            this.router.navigate(['/recipe/' + updatedRecipeId + '/view']);
+          },
+          err => {
+            this.toastrManager.errorToastr("Error occured during saving the recipe", "Ooops!");
+            this.apisService.saveError(err);
+          }
+        );
+      } else {
+        this.apisService.createRecipe(this.recipeFormGroup.value).subscribe(
+          (newRecipeId: number) => {
+            this.toastrManager.successToastr("Your recipe have been created!", "Created");
+            this.router.navigate(['/recipe/' + newRecipeId + '/view']);
+          },
+          err => {
+            this.toastrManager.errorToastr("Error occured during saving the recipe", "Ooops!");
+            this.apisService.saveError(err);
+          }
+        );
+      }
+
     }
   }
 

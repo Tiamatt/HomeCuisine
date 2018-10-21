@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BaseComponent } from './../../../../core/BaseComponent';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { ApisService } from './../../../../shared/services/apis.service';
@@ -29,7 +29,7 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
     this.ingredientFormGroup = new FormGroup({
       'name': new FormControl(
         null, // default value
-        [NullOrWhiteSpaceValidatorDirectiveFn()], // array of sync validators
+        [Validators.minLength(2), Validators.maxLength(128), NullOrWhiteSpaceValidatorDirectiveFn()], // array of sync validators
         [UniqueInDbValidatorDirectiveFn(this.apisService, 'ingredient', 0)] // array of async validators
       ),
     });

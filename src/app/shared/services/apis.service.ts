@@ -76,9 +76,9 @@ export class ApisService extends BaseService{
         return this.httpClient.post(apiUrl, ingredientForm);
     }
 
-    public saveRecipe(recipeForm: any) {
+    public createRecipe(recipeModel: RecipeModel) {
         let apiUrl = this.baseApiUrl + "/recipe";
-        return this.httpClient.post(apiUrl, recipeForm);
+        return this.httpClient.post(apiUrl, recipeModel);
     }
 
     public saveError(httpErrorResponse: HttpErrorResponse) {
@@ -88,4 +88,13 @@ export class ApisService extends BaseService{
     }
 
     // END: CRUD -> CREATE (save in db)
+
+    // BEGIN: CRUD -> UPDATE (update in db)
+
+    public updateRecipe(recipeId: number, recipeModel: RecipeModel) {
+        let apiUrl = this.baseApiUrl + "/recipe/" + recipeId;
+        return this.httpClient.put(apiUrl, recipeModel);
+    }
+
+    // END: CRUD -> UPDATE (update in db)
 }
