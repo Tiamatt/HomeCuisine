@@ -39,6 +39,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
         if(recipeId) {
             this.apisService.getRecipe(recipeId).subscribe(
               (res: RecipeModel) => {
+                res.directions.sort(x => x.sortNumber);
                 this.initialRecipe = res;
                 this.isInitialFrontImage = true;
                 this.setRecipeFormGroup();
