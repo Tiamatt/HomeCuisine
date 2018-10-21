@@ -1,25 +1,9 @@
 @import "~src/styles.scss";
 
-.form-c {
-    max-width: 500px;
-    margin: 10px auto;
-}
-
-label{
-    font-size: 1.3em;
-}
-
 .box-c{
     border: 1px solid $color-dark-green-c;
     border-radius: 15px;
-    min-height: 30px;
-    i{
-        padding: 2px 6px;
-        font-size: 22px;
-    }
-    i:hover{
-        color: $color-orange-c;
-    }
+
     .circle-c {
         padding: 1px 8px 1px 8px;
         height: 20px;
@@ -29,4 +13,16 @@ label{
         text-align: center;
         background: #000
     }
+
+    i{
+        font-size: 22px;
+    }
+    i:hover{
+        color: #dc3545;
+        cursor: pointer;
+    }
+}
+
+.full-width-c{
+    width: 100%;
 }

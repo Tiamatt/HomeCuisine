@@ -1,15 +1,17 @@
 <div class="form-c" *ngIf="recipe">
   
+  <!-- Recipe Name -->
   <div class="form-group  mb-5">
       <h1>{{recipe.name}}</h1>
       <hr>
   </div>
 
-
+  <!-- Recipe Front Image -->
   <div class="m-5">
     <img [src]="recipe.frontImage" alt="recipe image">
   </div>
 
+  <!-- Ingredients -->
   <div class="form-group mb-5">
     <label>Ingredients</label>
     <div *ngFor="let ingredient of recipe.ingredients">
@@ -19,8 +21,22 @@
         <p class="float-left">{{ingredient.ingredientName + ' - ' + ingredient.amount  + ' ' + ingredient.measureName }}</p>
       </div>
       <div class="clearfix"></div> 
+    </div>  
+  </div>
+
+<!-- List of selected items -->
+  <div class="form-group mb-5">
+    <label>Directions</label>
+    <div class="container">
+      <div class="row box-c mb-2" *ngFor="let direction of recipe.directions">
+        <div class="col-sm-1 pl-1">
+            <span class="circle-c">{{direction.sortNumber}}</span>
+        </div>
+        <div class="col-sm-11 pl-1">
+            <span class="aghgh">{{direction.description}}</span>
+        </div>
+      </div>
     </div>
-    
   </div>
 
 

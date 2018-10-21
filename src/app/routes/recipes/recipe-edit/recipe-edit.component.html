@@ -38,7 +38,8 @@
 
   <div class="form-group mb-5">
       <label for="name">Ingredients *</label>
-      <ingredients-panel [selections]="recipeFormGroup.value.ingredients"
+      <ingredients-panel 
+      [selections]="recipeFormGroup.value.ingredients"
       (OnSelectionsChanges)="onIngredientsChanges($event)"
       ></ingredients-panel>
       <div *ngIf="isInvalid && recipeFormGroup.get('ingredients').invalid" class="alert alert-danger p-1 mt-2"> 
@@ -48,7 +49,10 @@
  
   <div class="form-group mb-5">
     <label for="steps">Directions *</label>
-    <textarea class="form-control" rows="3"></textarea>
+    <directions-panel 
+    [selections]="recipeFormGroup.value.directions"
+    (OnSelectionsChanges)="onDirectionsChanges($event)"
+    ></directions-panel>
   </div>
 
 

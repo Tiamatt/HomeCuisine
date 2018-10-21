@@ -1,3 +1,4 @@
+import { DirectionModel } from './../../../shared/models/direction.model';
 import { ImageUploaderAndCropperComponent } from './../../../shared/components/image-uploader-and-cropper/image-uploader-and-cropper.component';
 import { IngredientModel } from './../../../shared/models/ingredient.model';
 import { UniqueInDbValidatorDirectiveFn } from 'src/app/shared/directives/unique-in-db-validator.directive';
@@ -47,7 +48,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
                 this.apisService.saveError(err);
               });
         } else {
-            this.initialRecipe = new RecipeModel(null, null, [], null);
+            this.initialRecipe = new RecipeModel(null, null, [], [], null);
             this.isInitialFrontImage = false;
             this.setRecipeFormGroup();
         }
@@ -73,9 +74,10 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
       'ingredients': new FormControl(
         this.initialRecipe.ingredients.slice(), 
         Validators.required),
+      'directions': new FormControl(
+        this.initialRecipe.directions.slice(), 
+        Validators.required),
     });
-
-    console.log({'kaliLog_setRecipeFormGroup': this.initialRecipe});
   }
 
   onImageUploadedAndCropped(event: string){
@@ -87,9 +89,12 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
     this.recipeFormGroup.patchValue({'ingredients': event});
   }
 
+  onDirectionsChanges(event: DirectionModel[]){
+    this.recipeFormGroup.patchValue({'directions': event});
+  }
+
   onSave(): void {
     this.isInvalid = !this.recipeFormGroup.valid;
-    console.log(this.recipeFormGroup);
     if(this.isInvalid) {
       this.toastrManager.warningToastr("Validation failed. Please, read text marked red.", "Warning!");
     }
