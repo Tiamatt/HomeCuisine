@@ -3,30 +3,34 @@
 .form-c {
     max-width: 500px;
     margin: 10px auto;
-}
 
-label{
-    font-size: 1.3em;
-}
+    label{
+        font-size: 1.3em;
+    }
 
-.box-c{
-    border: 1px solid $color-dark-green-c;
-    border-radius: 15px;
-    min-height: 30px;
-    i{
-        padding: 2px 6px;
-        font-size: 22px;
+    .box-c{
+        border: 1px solid $color-dark-green-c;
+        border-radius: 15px;
+        min-height: 30px;
+        i{
+            padding: 2px 6px;
+            font-size: 22px;
+        }
+        i:hover{
+            color: $color-orange-c;
+        }
+        .circle-c {
+            padding: 1px 8px 1px 8px;
+            height: 20px;
+            // line-height: 20px;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            background: #000
+        }
     }
-    i:hover{
-        color: $color-orange-c;
-    }
-    .circle-c {
-        padding: 1px 8px 1px 8px;
-        height: 20px;
-        // line-height: 20px;
-        border-radius: 50%;
-        color: #fff;
-        text-align: center;
-        background: #000
+
+    .btn-c:hover{
+        background: $color-orange-c;
     }
 }

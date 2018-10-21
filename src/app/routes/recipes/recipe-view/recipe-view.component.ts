@@ -1,7 +1,7 @@
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { ApisService } from './../../../shared/services/apis.service';
 import { BaseComponent } from './../../../core/BaseComponent';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeModel } from './../../../shared/models/recipe.model';
 import { Component, OnInit } from '@angular/core';
 
@@ -17,11 +17,12 @@ export class RecipeViewComponent extends BaseComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private apisService: ApisService,
     private toastrManager: ToastrManager,
+    private router: Router,
   ) { 
     super();
   }
 
-  setRecipe() {
+  private setRecipe() {
     this.activatedRoute.params.subscribe(
       (params: Params) => {
         let recipeId = (this.isStringPositiveNumber(params['id'])) ? params['id'] : null;
@@ -39,6 +40,10 @@ export class RecipeViewComponent extends BaseComponent implements OnInit {
         this.toastrManager.errorToastr("Couldn't get recipe id from activated route", "Ooops!");
         this.apisService.saveError(err);
       });
+  }
+
+  onRedirectToEditPage(){
+    this.router.navigate(['/recipe/' + this.recipe.id + '/edit']);
   }
 
   ngOnInit() {
