@@ -29,8 +29,8 @@ export class RecipeViewComponent extends BaseComponent implements OnInit {
         let recipeId = (this.isStringPositiveNumber(params['id'])) ? params['id'] : null;
         this.apisService.getRecipe(recipeId).subscribe(
           (res: RecipeModel) => {
-            res.directions.sort(x => x.sortNumber);
             this.recipe = res;
+            this.sortArrayOfObjectsByNumericKey(this.recipe.directions, "sortNumber");
           },
           err => {
             this.toastrManager.errorToastr("Error occure while calling recipe", "Ooops!");
