@@ -1,0 +1,27 @@
+<div class="input-group mb-3 box-c">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">
+        <i class="fa fa-clock-o pr-1" aria-hidden="true"></i>
+        h
+      </span>
+  </div>
+  <input type="number" min="0" max="36"
+  [ngModel]="hours" (ngModelChange)="onHoursChange($event)"
+  class="form-control" 
+  placeholder="ex: 0" aria-label="hours" 
+  aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group mb-3 box-c">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon2">
+        <i class="fa fa-clock-o pr-1" aria-hidden="true"></i>
+        m
+    </span>
+  </div>
+  <input type="number" min="0" max="59"
+  [ngModel]="minutes" (ngModelChange)="onMinutesChange($event)"
+  class="form-control" 
+  placeholder="ex:25" aria-label="minutes" 
+  aria-describedby="basic-addon2">
+</div>

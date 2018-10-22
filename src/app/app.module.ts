@@ -31,6 +31,7 @@ import { IngredientsPanelComponent } from './routes/recipes/recipe-edit/ingredie
 import { DirectionsPanelComponent } from './routes/recipes/recipe-edit/directions-panel/directions-panel.component';
 import { IngredientListComponent } from './routes/recipes/ingredients/ingredient-list/ingredient-list.component';
 import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient-edit/ingredient-edit.component';
+import { PreparationTimePanelComponent } from './routes/recipes/recipe-edit/preparation-time-panel/preparation-time-panel.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient
     IngredientEditComponent,
     LoadingSpinnerComponent,
     NullOrWhiteSpaceValidatorDirective,
+    PreparationTimePanelComponent,
   ],
   imports: [
     BrowserModule,

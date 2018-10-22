@@ -94,6 +94,10 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
     this.recipeFormGroup.patchValue({'directions': event});
   }
 
+  onPreparationTimeChanged(event: number) {
+    console.log("kaliLog_onPreparationTimeChanged: " + event);
+  }
+
   onSave(): void {
     this.isInvalid = !this.recipeFormGroup.valid;
     if(this.isInvalid) {

@@ -1,10 +1,12 @@
 <form [formGroup]="recipeFormGroup" (ngSubmit)="onSave()" class="form-c" *ngIf="initialRecipe">
   
+   <!-- title --> 
   <div class="form-group mb-5">
       <h1>{{ (initialRecipe.id) ? 'Edit Recipe' : 'New Recipe' }}</h1>
       <hr>
   </div>
   
+  <!-- recipe name -->
   <div class="form-group mb-5">
     <label for="name">Recipe name *</label>
     <input type="text" id="name" formControlName="name" class="form-control" placeholder="your recipe name">
@@ -27,6 +29,7 @@
       </div>
   </div>
  
+  <!-- recipe front image -->
   <div class="form-group mb-5">
     <label>Recipe image * </label>
     <img *ngIf="isInitialFrontImage" [src]="initialRecipe.frontImage" alt="recipe image" class="img-thumbnail d-block mb-3">
@@ -36,6 +39,7 @@
     </div>
   </div>
 
+  <!-- ingredients -->
   <div class="form-group mb-5">
       <label for="name">Ingredients *</label>
       <ingredients-panel 
@@ -47,12 +51,38 @@
       </div>
   </div>
  
+  <!-- Direction -->
   <div class="form-group mb-5">
     <label for="steps">Directions *</label>
     <directions-panel 
     [selections]="recipeFormGroup.value.directions"
     (OnSelectionsChanges)="onDirectionsChanges($event)"
     ></directions-panel>
+  </div>
+
+  <!-- Preparation time and servings -->
+  <div class="form-group mb-5">
+    <label for="steps">Preparation time and services *</label>
+    <div class="container p-0">
+        <div class="row">
+            <div class="col-sm-8">
+                <preparation-time-panel [preparationTimeInMinutes]=80 (OnPreparationTimeChanged)="onPreparationTimeChanged($event)"></preparation-time-panel>
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="ex: 2" aria-label="servings" aria-describedby="basic-addon1">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <preparatio-time-panel 
+    ></preparatio-time-panel>  -->
   </div>
 
 
