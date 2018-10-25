@@ -17,8 +17,9 @@ export class PreparationTimePanelComponent extends BaseComponent implements OnCh
   }
 
   private setHoursAndMinutes(): void {
-    this.hours = Math.floor(this.preparationTimeInMinutes/60);
-    this.minutes = this.preparationTimeInMinutes % 60;
+    let convertedTime = this.convertMinutesIntoHoursAndMinutes(this.preparationTimeInMinutes);
+    this.hours = convertedTime.hours;
+    this.minutes = convertedTime.minutes;
   }
 
   private setAndEmitPreparationTime(): void {
@@ -41,9 +42,7 @@ export class PreparationTimePanelComponent extends BaseComponent implements OnCh
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.preparationTimeInMinutes) {
       this.setHoursAndMinutes();
-    }
   }
 
 }

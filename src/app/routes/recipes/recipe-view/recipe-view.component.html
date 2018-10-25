@@ -1,13 +1,33 @@
 <div class="form-c" *ngIf="recipe">
   
-  <!-- Recipe Name -->
+  <!-- recipe Name -->
   <div class="form-group  mb-5">
       <h1>{{recipe.name}}</h1>
       <hr>
   </div>
 
-  <!-- Recipe Front Image -->
+  <!-- recipe front image -->
   <img [src]="recipe.frontImage" alt="recipe image" class="img-thumbnail d-block mb-3">
+
+  <!-- preparation time and servings -->
+  <div class="form-group clearfix mb-3">
+      <div class="input-group float-right" style="width: 130px;">
+          <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                  <i class="fa fa-users" aria-hidden="true"></i>
+              </span>
+          </div>
+          <p class="form-control">{{recipe.servings + ' servings'}}</p>
+      </div>
+      <div class="input-group float-right" style="width: 130px;">
+          <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+              </span>
+          </div>
+          <p class="form-control">{{preparationTimeInHoursAndMinutes}}</p>
+      </div>
+  </div>
 
 
   <!-- Ingredients -->

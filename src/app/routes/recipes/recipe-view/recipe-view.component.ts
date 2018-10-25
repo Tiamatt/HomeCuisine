@@ -13,6 +13,7 @@ import { IngredientModel } from 'src/app/shared/models/ingredient.model';
 })
 export class RecipeViewComponent extends BaseComponent implements OnInit {
   recipe: RecipeModel;
+  preparationTimeInHoursAndMinutes: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,6 +31,7 @@ export class RecipeViewComponent extends BaseComponent implements OnInit {
         this.apisService.getRecipe(recipeId).subscribe(
           (res: RecipeModel) => {
             this.recipe = res;
+            this.setPreparationTimeInHoursAndMinutes();
             this.sortArrayOfObjectsByNumericKey(this.recipe.directions, "sortNumber");
           },
           err => {
@@ -42,6 +44,13 @@ export class RecipeViewComponent extends BaseComponent implements OnInit {
         this.toastrManager.errorToastr("Couldn't get recipe id from activated route", "Ooops!");
         this.apisService.saveError(err);
       });
+  }
+
+  setPreparationTimeInHoursAndMinutes() {
+    let convertedTime = this.convertMinutesIntoHoursAndMinutes(this.recipe.preparationTime);
+    if(convertedTime.hours>=0 && convertedTime.minutes>=0) {
+      this.preparationTimeInHoursAndMinutes = convertedTime.hours + ' h ' + convertedTime.minutes + ' m';
+    }
   }
 
   onCheckIngredient(ingredient: IngredientModel) {

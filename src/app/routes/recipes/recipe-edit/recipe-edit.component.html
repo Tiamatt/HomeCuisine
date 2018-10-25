@@ -51,7 +51,7 @@
       </div>
   </div>
  
-  <!-- Direction -->
+  <!-- direction -->
   <div class="form-group mb-5">
     <label for="steps">Directions *</label>
     <directions-panel 
@@ -60,29 +60,32 @@
     ></directions-panel>
   </div>
 
-  <!-- Preparation time and servings -->
+  <!-- preparation time and servings -->
   <div class="form-group mb-5">
-    <label for="steps">Preparation time and services *</label>
+    <label for="steps">Preparation time and servings *</label>
     <div class="container p-0">
         <div class="row">
             <div class="col-sm-8">
-                <preparation-time-panel [preparationTimeInMinutes]=80 (OnPreparationTimeChanged)="onPreparationTimeChanged($event)"></preparation-time-panel>
+                <preparation-time-panel [preparationTimeInMinutes]="recipeFormGroup.value.preparationTime" (OnPreparationTimeChanged)="onPreparationTimeChanged($event)"></preparation-time-panel>
             </div>
             <div class="col-sm-4">
-                <div class="input-group mb-3">
+                <div class="input-group mb-1">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">
                             <i class="fa fa-users" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <input type="text" class="form-control" placeholder="ex: 2" aria-label="servings" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" id="servings" formControlName="servings"  placeholder="ex: 2" aria-label="servings" aria-describedby="basic-addon1">
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- <preparatio-time-panel 
-    ></preparatio-time-panel>  -->
+    <div *ngIf="isInvalid && recipeFormGroup.get('preparationTime').invalid" class="alert alert-danger p-1 mt-2"> 
+        * Preparation Time required. Hours can have value between 0 and 32. Minutes can have value between 0 and 59.
+    </div>
+    <div *ngIf="isInvalid && recipeFormGroup.get('servings').invalid" class="alert alert-danger p-1 mt-2"> 
+        * Servings required. Min value must be 1.
+    </div>
   </div>
 
 

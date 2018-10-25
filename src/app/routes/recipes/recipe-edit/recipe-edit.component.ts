@@ -49,7 +49,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
                 this.apisService.saveError(err);
               });
         } else {
-            this.initialRecipe = new RecipeModel(null, null, [], [], null);
+            this.initialRecipe = new RecipeModel(null, null, [], [], null, null);
             this.isInitialFrontImage = false;
             this.setRecipeFormGroup();
         }
@@ -74,10 +74,16 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
         Validators.required),
       'ingredients': new FormControl(
         this.initialRecipe.ingredients.slice(), 
-        Validators.required),
+        Validators.required),  // kali - add min 1
       'directions': new FormControl(
         this.initialRecipe.directions.slice(), 
-        Validators.required),
+        Validators.required),  // kali - add min 1
+      'preparationTime': new FormControl(
+        this.initialRecipe.preparationTime, 
+        Validators.required), // kali - add min 1
+      'servings': new FormControl(
+        this.initialRecipe.servings, 
+        Validators.required),  // kali - add min 1
     });
   }
 
@@ -95,7 +101,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
   }
 
   onPreparationTimeChanged(event: number) {
-    console.log("kaliLog_onPreparationTimeChanged: " + event);
+    this.recipeFormGroup.patchValue({'preparationTime': event});
   }
 
   onSave(): void {
