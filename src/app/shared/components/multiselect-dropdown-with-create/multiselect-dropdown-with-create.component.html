@@ -1,0 +1,29 @@
+<!-- selected options -->
+<div *ngFor="let option of options">
+    <div class="mb-2 selection-c pl-3" *ngIf="option.selected">
+        <p class="float-left">{{option.name}}</p>
+        <i class="fa fa-times-circle float-right" aria-hidden="true" (click)="onRemove(option)"></i>
+    </div>
+    <div class="clearfix"></div> 
+</div>
+
+<!-- dropdown -->
+<div class="pb-2">
+    <div class="input-group">
+        <select class="custom-select" name="selectedOption" [ngModel]="selectedOption" (ngModelChange)="onSelected($event)">
+            <option [value]="-1" [selected]="selectedOption == '-1'">-- start typing or select --</option>
+            <ng-container *ngFor="let option of options">
+                <option *ngIf="!option.selected" [value]="option.value">{{option.name}}</option>
+            </ng-container>
+        </select>
+        <div class="input-group-append">
+            <button class="btn btn-warning" type="button" (click)="myModal.open()">+</button>
+        </div>
+    </div>
+</div>
+      
+<!-- Modal dialog for creating new ingredient -->
+<!-- <ngx-smart-modal #myModal identifier="myModal">
+  <ingredient-edit></ingredient-edit>
+</ngx-smart-modal> -->
+    

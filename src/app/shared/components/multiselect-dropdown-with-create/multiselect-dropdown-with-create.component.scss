@@ -1,0 +1,17 @@
+@import "~src/styles.scss";
+
+.selection-c {
+    border: 1px solid $color-dark-green-c;
+    border-radius: 15px;
+    height: 30px;
+    line-height: 28px;
+
+    i{
+        padding: 2px 6px;
+        font-size: 22px;
+    }
+    i:hover{
+        color: #dc3545;
+        cursor: pointer;
+    }
+}

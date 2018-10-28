@@ -32,6 +32,7 @@ import { DirectionsPanelComponent } from './routes/recipes/recipe-edit/direction
 import { IngredientListComponent } from './routes/recipes/ingredients/ingredient-list/ingredient-list.component';
 import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient-edit/ingredient-edit.component';
 import { PreparationTimePanelComponent } from './routes/recipes/recipe-edit/preparation-time-panel/preparation-time-panel.component';
+import { MultiselectDropdownWithCreateComponent } from './shared/components/multiselect-dropdown-with-create/multiselect-dropdown-with-create.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { PreparationTimePanelComponent } from './routes/recipes/recipe-edit/prep
     LoadingSpinnerComponent,
     NullOrWhiteSpaceValidatorDirective,
     PreparationTimePanelComponent,
+    MultiselectDropdownWithCreateComponent,
   ],
   imports: [
     BrowserModule,

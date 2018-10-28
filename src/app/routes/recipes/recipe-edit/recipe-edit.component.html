@@ -88,6 +88,12 @@
     </div>
   </div>
 
+    <!-- categories -->
+    <div class="form-group mb-5">
+            <label for="steps">Categories *</label>
+            <multiselect-dropdown-with-create
+            ></multiselect-dropdown-with-create>
+          </div>
 
   <div class="form-group">
       <button type="button" class="btn btn-secondary mr-2" (click)="onClearOrCancel()">{{ (initialRecipe.id) ? 'Cancel' : 'Clear' }}</button>
