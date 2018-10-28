@@ -32,7 +32,7 @@
   <!-- recipe front image -->
   <div class="form-group mb-5">
     <label>Recipe image * </label>
-    <img *ngIf="isInitialFrontImage" [src]="initialRecipe.frontImage" alt="recipe image" class="img-thumbnail d-block mb-3">
+    <img *ngIf="isInitialFrontImage && initialRecipe.frontImage" [src]="initialRecipe.frontImage" alt="recipe image" class="img-thumbnail d-block mb-3">
     <image-uploader-and-cropper (OnImageUploadedAndCropped)="onImageUploadedAndCropped($event)"></image-uploader-and-cropper>
     <div *ngIf="isInvalid && recipeFormGroup.get('frontImage').invalid" class="alert alert-danger p-1 mt-2"> 
         * Image required
@@ -94,7 +94,7 @@
     <!-- categories -->
     <div class="form-group mb-5">
         <label for="steps">Categories *</label>
-        <multiselect-dropdown-with-create [entityName]="'category'" [selectedOptions]="initialRecipe.categories" (OnSelectionChanged)="onCategoriesChanges($event)"
+        <multiselect-dropdown-with-create [entityName]="'category'" [selectedOptions]="recipeFormGroup.value.categories" (OnSelectionChanged)="onCategoriesChanges($event)"
         ></multiselect-dropdown-with-create>
         <div *ngIf="isInvalid && recipeFormGroup.get('categories').invalid" class="alert alert-danger p-1 mt-2"> 
             * At least one category required

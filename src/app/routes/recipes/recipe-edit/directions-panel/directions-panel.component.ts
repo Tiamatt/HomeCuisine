@@ -1,10 +1,7 @@
+import { Component, OnChanges, Input, Output, EventEmitter, SimpleChanges} from '@angular/core';
 import { BaseComponent } from './../../../../core/BaseComponent';
-import { NgxSmartModalService } from 'ngx-smart-modal';
 import { ToastrManager } from 'ng6-toastr-notifications';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ApisService } from './../../../../shared/services/apis.service';
 import { DirectionModel } from './../../../../shared/models/direction.model';
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Guid } from 'guid-typescript';
 
 @Component({
@@ -12,7 +9,7 @@ import { Guid } from 'guid-typescript';
   templateUrl: './directions-panel.component.html',
   styleUrls: ['./directions-panel.component.scss']
 })
-export class DirectionsPanelComponent extends BaseComponent implements OnInit {
+export class DirectionsPanelComponent extends BaseComponent implements OnChanges {
   @Input() selections: DirectionModel[] = [];
   @Output() OnSelectionsChanges = new EventEmitter<DirectionModel[]>(); 
   selectedDescription: string  = null;
@@ -67,7 +64,10 @@ export class DirectionsPanelComponent extends BaseComponent implements OnInit {
     this.removeSelectionFromList(id);
   }
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
+    if(this.selections) {
+      this.sortNumber = this.selections.length + 1;
+    }
   }
 
 }
