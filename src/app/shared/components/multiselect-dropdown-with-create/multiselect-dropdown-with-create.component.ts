@@ -1,5 +1,6 @@
 import { Component, OnChanges, Input, EventEmitter, Output } from '@angular/core';
 import { BaseComponent } from './../../../core/BaseComponent';
+import { ApisService } from './../../services/apis.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { FilterModel } from './../../models/filter.model';
@@ -10,20 +11,35 @@ import { FilterModel } from './../../models/filter.model';
   styleUrls: ['./multiselect-dropdown-with-create.component.scss']
 })
 export class MultiselectDropdownWithCreateComponent extends BaseComponent implements OnChanges {
-  @Input() options: FilterModel[] = [];
+  @Input() entityName: string = 'category';
+  @Input() selectedOptions: FilterModel[] = [];
   @Output() OnSelectionChanged = new EventEmitter<FilterModel[]>();
+  options: FilterModel[] = [];
   selectedOption: string = "-1";
 
   constructor(
+    private apisService: ApisService,
     private toastrManager: ToastrManager,
     private ngxSmartModalService: NgxSmartModalService,
   ) { 
     super();
   }
 
+  private setOptions() {
+    this.apisService.getFilter(this.entityName).then(
+      (res: FilterModel[]) => {
+        let selectedValues = this.selectedOptions.map(option => option.value);
+        this.options = res.map(option => { 
+          option.selected = (selectedValues.indexOf(option.value) != -1);
+          return option;
+        });
+      }
+    );
+  }
+
   private passChangesToOutput() {
-    let selections = this.options.filter(option => option.selected === true);
-    this.OnSelectionChanged.emit(selections);
+    this.selectedOptions = this.options.filter(option => option.selected === true);
+    this.OnSelectionChanged.emit(this.selectedOptions);
   }
 
   onSelected(selectedValue: string) {
@@ -42,6 +58,7 @@ export class MultiselectDropdownWithCreateComponent extends BaseComponent implem
   }
 
   ngOnChanges() {
+    this.setOptions();
   }
 
 }

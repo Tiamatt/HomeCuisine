@@ -1,3 +1,4 @@
+import { FilterModel } from './../../../shared/models/filter.model';
 import { DirectionModel } from './../../../shared/models/direction.model';
 import { ImageUploaderAndCropperComponent } from './../../../shared/components/image-uploader-and-cropper/image-uploader-and-cropper.component';
 import { IngredientModel } from './../../../shared/models/ingredient.model';
@@ -21,6 +22,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
   isInitialFrontImage: boolean;
   recipeFormGroup: FormGroup;
   isInvalid: boolean = false;
+  categories: FilterModel[];
   @ViewChild(ImageUploaderAndCropperComponent) imageUploaderAndCropperComponent: ImageUploaderAndCropperComponent;
 
   constructor(
@@ -49,7 +51,7 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
                 this.apisService.saveError(err);
               });
         } else {
-            this.initialRecipe = new RecipeModel(null, null, [], [], null, null);
+            this.initialRecipe = new RecipeModel(null, null, [], [], null, null, []);
             this.isInitialFrontImage = false;
             this.setRecipeFormGroup();
         }
@@ -84,6 +86,9 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
       'servings': new FormControl(
         this.initialRecipe.servings, 
         Validators.required),  // kali - add min 1
+      'categories': new FormControl(
+        this.initialRecipe.categories.slice(),  
+        Validators.required),  // kali - add min 1  
     });
   }
 
@@ -102,6 +107,10 @@ export class RecipeEditComponent extends BaseComponent implements OnInit {
 
   onPreparationTimeChanged(event: number) {
     this.recipeFormGroup.patchValue({'preparationTime': event});
+  }
+
+  onCategoriesChanges(event: FilterModel[]){
+    this.recipeFormGroup.patchValue({'categories': event});
   }
 
   onSave(): void {
