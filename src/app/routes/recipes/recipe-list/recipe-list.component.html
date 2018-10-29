@@ -1,3 +1,21 @@
-<p> recipe-list works! </p>
-<p>{{'group ' + selectedGroup}}</p>
-<p>{{'categoryId ' + selectedCategoryId}}</p>
+<div *ngIf="recipes">
+    <div *ngFor="let recipe of recipes" class="shadow-lg bg-white rounded box-c">
+        <img [src]="recipe.frontImage" alt="recipe image" class="img-thumbnail d-block mb-1">
+        <div class="p-2">
+            <a [routerLink]="['/recipe/' + recipe.id + '/view']">{{recipe.name}}</a>
+            <hr class="m-2">
+            <p class="m-0">
+                <i class="fa fa-cutlery pr-2" aria-hidden="true"></i>
+                {{recipe.countIngredients}} ingredients
+            </p>
+            <p class="m-0">
+                <i class="fa fa-clock-o pr-2" aria-hidden="true"></i>
+                {{recipe.preparationTime}}
+            </p>
+            <p class="m-0">
+                <i class="fa fa-users pr-2" aria-hidden="true"></i>
+                {{recipe.servings}} servings
+            </p>
+        </div>
+    </div>
+</div>

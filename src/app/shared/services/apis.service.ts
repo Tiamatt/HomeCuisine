@@ -4,6 +4,7 @@ import { BaseService } from '../../core/BaseService';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RecipeModel } from '../models/recipe.model';
+import { RecipeShortModel } from '../models/recipe-short';
 import { Observable } from 'rxjs';
 
 @Injectable() //need to inject build-in HttpClient service
@@ -44,6 +45,16 @@ export class ApisService extends BaseService{
 
         let apiUrl = this.baseApiUrl + "/recipe/" + recipeId;
         return this.httpClient.get<RecipeModel>(apiUrl);
+    }
+
+    public getRecipesByCategory(categoryId: number): Observable<RecipeShortModel[]> | null{
+        if (categoryId < 1) {
+            this.toastrManager.errorToastr("CategoryId can't be less than zero. Called from ApisService -> getRecipesByCategory()", "Dev error!");
+            return null;
+        }
+
+        let apiUrl = this.baseApiUrl + "/recipes/" + categoryId;
+        return this.httpClient.get<RecipeShortModel[]>(apiUrl);
     }
 
     // END: CRUD -> READ -> GET LIST OR SINGLE ITEM
