@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RecipeListComponent implements OnInit {
   selectedGroup: string;
+  selectedCategoryId: string;
   constructor(private activatedRoute: ActivatedRoute) {
    }
 
@@ -19,6 +20,7 @@ export class RecipeListComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       this.selectedGroup = (params['group']) ? params['group'] : null;
+      this.selectedCategoryId = (params['categoryId']) ? params['categoryId'] : null;
     });
   }
 
