@@ -11,7 +11,7 @@ import { FilterModel } from './../../models/filter.model';
   styleUrls: ['./multiselect-dropdown-with-create.component.scss']
 })
 export class MultiselectDropdownWithCreateComponent extends BaseComponent implements OnChanges {
-  @Input() entityName: string = 'category';
+  @Input() entityName: string = 'test';
   @Input() selectedOptions: FilterModel[] = [];
   @Output() OnSelectionChanged = new EventEmitter<FilterModel[]>();
   options: FilterModel[] = [];
@@ -40,6 +40,20 @@ export class MultiselectDropdownWithCreateComponent extends BaseComponent implem
   private passChangesToOutput() {
     this.selectedOptions = this.options.filter(option => option.selected === true);
     this.OnSelectionChanged.emit(this.selectedOptions);
+  }
+
+  onSaveEntity($event: FilterModel) {
+    this.setOptions();
+    // $event.value
+    this.ngxSmartModalService.getModal('myModal'+this.entityName).close();
+  }
+
+  onCancelEntity() {
+    this.ngxSmartModalService.getModal('myModal'+this.entityName).close();
+  }
+
+  onOpenSaveEntity(){
+    this.ngxSmartModalService.getModal('myModal'+ this.entityName).open();
   }
 
   onSelected(selectedValue: string) {

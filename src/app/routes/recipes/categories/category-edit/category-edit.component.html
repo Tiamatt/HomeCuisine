@@ -1,0 +1,38 @@
+<form [formGroup]="categoryFormGroup" (ngSubmit)="onSave()">
+  
+  <!-- HEADER -->
+  <div class="form-group">
+      <h2 class="text-center">New Category</h2>
+      <hr>
+  </div>
+  
+  <!-- Category name INPUT -->
+  <div class="form-group mb-4">
+    <label for="name">Name *</label>
+    <input type="text" id="name" formControlName="name" class="form-control" placeholder="your category name">
+    <div *ngIf="categoryFormGroup.get('name').touched && categoryFormGroup.get('name').invalid">
+      <p *ngIf="categoryFormGroup.get('name').errors['nullOrWhiteSpace']" class="alert alert-danger p-1 mt-2"> 
+          * Name required
+      </p>
+      <p *ngIf="categoryFormGroup.get('name').errors['minlength']" class="alert alert-danger p-1 mt-2"> 
+          * Name must contain at least 2 characters 
+      </p>
+      <p *ngIf="categoryFormGroup.get('name').errors['maxlength']" class="alert alert-danger p-1 mt-2"> 
+          * Name can contain max 128 characters 
+      </p>
+      <p *ngIf="categoryFormGroup.get('name').errors['notUniqueInDb']" class="alert alert-danger p-1 mt-2"> 
+          * Name already exists
+      </p>
+      <p *ngIf="categoryFormGroup.get('name').errors['notUniqueInDb_apiError']" class="alert alert-danger p-1 mt-2"> 
+          * Api error, please try again later
+      </p>
+    </div>
+  </div>
+
+  <!-- Cancel and Save BUTTONS -->
+  <div class="form-group float-right">
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    <button type="submit" class="btn btn-primary m-2" [disabled]="!categoryFormGroup.valid">Save</button>
+  </div>
+
+</form>

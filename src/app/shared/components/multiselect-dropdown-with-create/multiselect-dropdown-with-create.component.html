@@ -19,15 +19,15 @@
                 </ng-container>
             </select>
             <div class="input-group-append">
-                <button class="btn btn-warning" type="button" (click)="myModal.open()">+</button>
+                <button class="btn btn-warning" type="button" (click)="onOpenSaveEntity()">+</button>
             </div>
         </div>
     </div>
         
-    <!-- Modal dialog for creating new ingredient -->
-    <!-- <ngx-smart-modal #myModal identifier="myModal">
-    <ingredient-edit></ingredient-edit>
-    </ngx-smart-modal> -->
+    <!-- Modal dialog for creating new entity -->
+    <ngx-smart-modal #myModalcategory identifier="myModalcategory" *ngIf="entityName == 'category'">
+        <category-edit (OnSave)="onSaveEntity($event)" (OnCancel)="onCancelEntity()"></category-edit>
+    </ngx-smart-modal>
  
 
 </div>

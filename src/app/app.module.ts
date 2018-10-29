@@ -31,6 +31,7 @@ import { IngredientsPanelComponent } from './routes/recipes/recipe-edit/ingredie
 import { DirectionsPanelComponent } from './routes/recipes/recipe-edit/directions-panel/directions-panel.component';
 import { IngredientListComponent } from './routes/recipes/ingredients/ingredient-list/ingredient-list.component';
 import { IngredientEditComponent } from './routes/recipes/ingredients/ingredient-edit/ingredient-edit.component';
+import { CategoryEditComponent } from './routes/recipes/categories/category-edit/category-edit.component';
 import { PreparationTimePanelComponent } from './routes/recipes/recipe-edit/preparation-time-panel/preparation-time-panel.component';
 import { MultiselectDropdownWithCreateComponent } from './shared/components/multiselect-dropdown-with-create/multiselect-dropdown-with-create.component';
 
@@ -53,6 +54,7 @@ import { MultiselectDropdownWithCreateComponent } from './shared/components/mult
     ImageUploaderAndCropperComponent,
     IngredientListComponent,
     IngredientEditComponent,
+    CategoryEditComponent,
     LoadingSpinnerComponent,
     NullOrWhiteSpaceValidatorDirective,
     PreparationTimePanelComponent,

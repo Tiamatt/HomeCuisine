@@ -32,7 +32,7 @@ export class ApisService extends BaseService{
             return null;
         }
 
-        let apiUrl = this.baseApiUrl + "/filter/" + entityName;
+        let apiUrl = this.baseApiUrl + "/filters/" + entityName;
         return this.httpClient.get<FilterModel[]>(apiUrl).toPromise();
     }
 
@@ -74,6 +74,11 @@ export class ApisService extends BaseService{
     public saveIngredient(ingredientForm: any) {
         let apiUrl = this.baseApiUrl + "/ingredient";
         return this.httpClient.post(apiUrl, ingredientForm);
+    }
+
+    public saveCategory(categoryForm: any) {
+        let apiUrl = this.baseApiUrl + "/category";
+        return this.httpClient.post(apiUrl, categoryForm);
     }
 
     public createRecipe(recipeModel: RecipeModel) {
