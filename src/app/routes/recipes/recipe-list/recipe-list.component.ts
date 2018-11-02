@@ -24,16 +24,10 @@ export class RecipeListComponent extends BaseComponent implements OnInit {
     this.apisService.getRecipesByCategory(10).subscribe(
       (res: RecipeShortModel[] | null) => {
         this.recipes = res;
-        console.log({'kaliLog_getRecipesByCategory': this.recipes});
       } 
     );
   }
 
-  // private setSelectedGroup() {
-  //   let queryParams = this.activatedRoute.snapshot.queryParams;
-  //   this.selectedGroup = (queryParams['group']) ? queryParams['group'] : null;
-  //   console.log({'kaliLog': this.selectedGroup});
-  // }
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       this.selectedGroup = (params['group']) ? params['group'] : null;
