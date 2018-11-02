@@ -15,13 +15,4 @@ export class BaseComponent extends Base {
         arrayOfObjects.sort((a, b) => a[objectKeyName] < b[objectKeyName] ? -1 : a[objectKeyName] > b[objectKeyName] ? 1 : 0);
         return arrayOfObjects;
     }
-
-    public convertMinutesIntoHoursAndMinutes(mins: number): {'hours': number, 'minutes': number} {
-        let hours = (mins) ? Math.floor(mins/60) : null;
-        let minutes = (mins) ? mins % 60 : null;
-        return {
-            'hours': hours,
-            'minutes': minutes,
-        };
-    }
 }
