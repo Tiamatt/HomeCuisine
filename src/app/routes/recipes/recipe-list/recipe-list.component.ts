@@ -50,7 +50,7 @@ export class RecipeListComponent extends BaseComponent implements OnInit {
     if(category && category['name']){
           this.title = category['name'] + ' recipes';
     }
-    if(this.selectedGroup) {
+    else {
       switch(this.selectedGroup) {
         case 'favorite':
           this.title = "Your Favorite recipes";
@@ -58,6 +58,9 @@ export class RecipeListComponent extends BaseComponent implements OnInit {
         case 'user-recipes':
           this.title = "Your recipes";
           break;
+          case null:
+          this.title = "All recipes";
+          break;  
         default:
           this.title = "Popular recipes";
           break;
