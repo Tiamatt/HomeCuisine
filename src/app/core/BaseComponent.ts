@@ -11,7 +11,7 @@ export class BaseComponent extends Base {
         return result.name;
     }
 
-    public sortArrayOfObjectsByNumericKey(arrayOfObjects: Array<any>, objectKeyName: string): Array<any>{
+    public sortArrayOfObjectsByKey(arrayOfObjects: Array<any>, objectKeyName: string): Array<any>{
         arrayOfObjects.sort((a, b) => a[objectKeyName] < b[objectKeyName] ? -1 : a[objectKeyName] > b[objectKeyName] ? 1 : 0);
         return arrayOfObjects;
     }
