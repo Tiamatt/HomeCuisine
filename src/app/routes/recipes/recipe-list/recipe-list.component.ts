@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ApisService } from './../../../shared/services/apis.service';
 import { RecipeShortModel } from './../../../shared/models/recipe-short';
 import { BaseComponent } from './../../../core/BaseComponent';
@@ -18,11 +19,13 @@ export class RecipeListComponent extends BaseComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private apisService: ApisService,
+    private spinner: NgxSpinnerService,
   ) {
     super();
   }
 
   private callAllPromises() {
+    this.spinner.show();
     if(this.selectedCategoryId && this.selectedCategoryId > 0){
       Promise.all([
         this.apisService.getRecipesByCategory(this.selectedCategoryId),
@@ -31,9 +34,11 @@ export class RecipeListComponent extends BaseComponent implements OnInit {
       .then((res) => {
         this.setRecipes(res[0]);
         this.setTitle(res[1]);
+        this.spinner.hide();
       });
     } else {
       this.setTitle(null);
+      this.spinner.hide();
     }
   }
 
