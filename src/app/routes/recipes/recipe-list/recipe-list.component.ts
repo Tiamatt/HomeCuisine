@@ -24,7 +24,7 @@ export class RecipeListComponent extends BaseComponent implements OnInit {
     super();
   }
 
-  private callAllPromises() {
+  private loadData() {
     this.spinner.show();
     if(this.selectedCategoryId && this.selectedCategoryId > 0){
       Promise.all([
@@ -69,7 +69,7 @@ export class RecipeListComponent extends BaseComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.selectedGroup = (params['group']) ? params['group'] : null;
       this.selectedCategoryId = (params['categoryId'] && !isNaN(params['categoryId'])) ? + params['categoryId'] : null;
-      this.callAllPromises();
+      this.loadData();
     });
   }
 
