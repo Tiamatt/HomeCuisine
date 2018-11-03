@@ -13,7 +13,8 @@ export class RecipeListComponent extends BaseComponent implements OnInit {
   title: string;
   recipes: RecipeShortModel[];
   private selectedGroup: string;
-  private selectedCategoryId: string;
+  private selectedCategoryId: number;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private apisService: ApisService,
@@ -21,25 +22,49 @@ export class RecipeListComponent extends BaseComponent implements OnInit {
     super();
   }
 
-  private setRecipes(){
-    this.apisService.getRecipesByCategory(10).subscribe(
-      (res: RecipeShortModel[] | null) => {
-        this.recipes = res;
-      } 
-    );
+  private callAllPromises() {
+    if(this.selectedCategoryId && this.selectedCategoryId > 0){
+      Promise.all([
+        this.apisService.getRecipesByCategory(this.selectedCategoryId),
+        this.apisService.getCategory(this.selectedCategoryId),
+      ])
+      .then((res) => {
+        this.setRecipes(res[0]);
+        this.setTitle(res[1]);
+      });
+    } else {
+      this.setTitle(null);
+    }
   }
 
-  private setTitle() {
-    if(this.selectedCategoryId){
-      
+  private setRecipes(res: RecipeShortModel[] | null){
+    this.recipes = res;
+  }
+
+  private setTitle(category: any) {
+    if(category && category['name']){
+          this.title = category['name'] + ' recipes';
+    }
+    if(this.selectedGroup) {
+      switch(this.selectedGroup) {
+        case 'favorite':
+          this.title = "Your Favorite recipes";
+          break;
+        case 'user-recipes':
+          this.title = "Your recipes";
+          break;
+        default:
+          this.title = "Popular recipes";
+          break;
+      }
     }
   }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       this.selectedGroup = (params['group']) ? params['group'] : null;
-      this.selectedCategoryId = (params['categoryId']) ? params['categoryId'] : null;
-      this.setRecipes();
+      this.selectedCategoryId = (params['categoryId'] && !isNaN(params['categoryId'])) ? + params['categoryId'] : null;
+      this.callAllPromises();
     });
   }
 

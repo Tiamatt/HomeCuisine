@@ -47,14 +47,24 @@ export class ApisService extends BaseService{
         return this.httpClient.get<RecipeModel>(apiUrl);
     }
 
-    public getRecipesByCategory(categoryId: number): Observable<RecipeShortModel[]> | null{
+    public getCategory(categoryId: number): Promise<any> | null {
+        if (categoryId < 1) {
+            this.toastrManager.errorToastr("CategoryId can't be less than zero. Called from ApisService -> getCategory()", "Dev error!");
+            return null;
+        }
+
+        let apiUrl = this.baseApiUrl + "/category/" + categoryId;
+        return this.httpClient.get<any>(apiUrl).toPromise();
+    }
+
+    public getRecipesByCategory(categoryId: number): Promise<RecipeShortModel[]> | null{
         if (categoryId < 1) {
             this.toastrManager.errorToastr("CategoryId can't be less than zero. Called from ApisService -> getRecipesByCategory()", "Dev error!");
             return null;
         }
 
         let apiUrl = this.baseApiUrl + "/recipes/" + categoryId;
-        return this.httpClient.get<RecipeShortModel[]>(apiUrl);
+        return this.httpClient.get<RecipeShortModel[]>(apiUrl).toPromise();
     }
 
     // END: CRUD -> READ -> GET LIST OR SINGLE ITEM

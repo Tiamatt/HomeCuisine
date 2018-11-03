@@ -1,4 +1,11 @@
-<h2>{{title}}</h2>
-<div *ngIf="recipes">
-    <recipe-panel *ngFor="let recipe of recipes" [recipe]="recipe"></recipe-panel>
+<div class="panel-c">
+
+    <div class="form-group  mb-3">
+        <h1>{{title}}</h1>
+        <hr>
+    </div>
+
+    <div *ngIf="recipes">
+        <recipe-panel *ngFor="let recipe of recipes" [recipe]="recipe"></recipe-panel>
+    </div>
 </div>

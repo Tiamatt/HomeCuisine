@@ -1,31 +1,4 @@
-.box-c{
-    min-width: 200px;
-    display: inline-block;
-    margin: 10px;
-    border: 1px solid rgba(0,0,0, 0.3);;
-
-    a{
-        font-size: 1.2rem;
-        color: black;
-    }
+.panel-c{
+    max-width: 900px;
+    margin: 10px auto;
 }
-
-@media (min-width: 576px) { 
-    .box-c{
-        max-width: 100%;
-    }
- }
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { 
-    .box-c{
-        max-width: 45%;
-    }
- }
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) { 
-    .box-c{
-        max-width: 30%;
-    }
- }
