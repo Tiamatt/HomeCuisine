@@ -35,6 +35,7 @@ import { CategoryEditComponent } from './routes/recipes/categories/category-edit
 import { PreparationTimePanelComponent } from './routes/recipes/recipe-edit/preparation-time-panel/preparation-time-panel.component';
 import { MultiselectDropdownWithCreateComponent } from './shared/components/multiselect-dropdown-with-create/multiselect-dropdown-with-create.component';
 import { HoursAndMinutesPipe } from './shared/pipes/hours-and-minutes.pipe';
+import { RecipePanelComponent } from './routes/recipes/recipe-list/recipe-panel/recipe-panel.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { HoursAndMinutesPipe } from './shared/pipes/hours-and-minutes.pipe';
     NullOrWhiteSpaceValidatorDirective,
     PreparationTimePanelComponent,
     MultiselectDropdownWithCreateComponent,
+    RecipePanelComponent,
     HoursAndMinutesPipe,
   ],
   imports: [

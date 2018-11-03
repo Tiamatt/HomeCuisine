@@ -10,9 +10,10 @@ import { BaseComponent } from './../../../core/BaseComponent';
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent extends BaseComponent implements OnInit {
+  title: string;
   recipes: RecipeShortModel[];
-  selectedGroup: string;
-  selectedCategoryId: string;
+  private selectedGroup: string;
+  private selectedCategoryId: string;
   constructor(
     private activatedRoute: ActivatedRoute,
     private apisService: ApisService,
@@ -26,6 +27,12 @@ export class RecipeListComponent extends BaseComponent implements OnInit {
         this.recipes = res;
       } 
     );
+  }
+
+  private setTitle() {
+    if(this.selectedCategoryId){
+      
+    }
   }
 
   ngOnInit() {
