@@ -36,6 +36,7 @@ export class IngredientEditComponent extends BaseComponent implements OnInit {
   }
 
   onSave(): void {
+    this.ingredientFormGroup.value.name = this.ingredientFormGroup.value.name.toLowerCase();
     this.apisService.saveIngredient(this.ingredientFormGroup.value).subscribe(
       res => {
         this.toastrManager.successToastr("Ingredient have been saved successfully", "Saved");
